@@ -1,0 +1,50 @@
+server:
+  port: 8080
+  servlet:
+    context-path: /
+spring:
+  datasource:
+    # jdbc ??????
+    #    username: root
+    #    password: '123456'
+    #    url: jdbc:mysql://127.0.0.1:3306/ilink?characterEncoding=UTF-8&serverTimezone=UTC
+    #    driver-class-name: com.mysql.cj.jdbc.Driver
+    #    type: com.alibaba.druid.pool.DruidDataSource
+
+    username: root
+    password: 'ilink1234'
+
+
+  #  ????????
+  servlet:
+    multipart:
+      max-file-size: 200MB
+      max-request-size: 200MB
+
+  mvc:
+    pathmatch:
+      matching-strategy: ant_path_matcher
+
+  jackson:
+    time-zone: Asia/Shanghai
+
+pagehelper:
+  auto-dialect: true
+  reasonable: true
+  support-methods-arguments: true
+  page-size-zero: true
+  params: count=countSql
+
+mybatis:
+  configuration:
+    map-underscore-to-camel-case: true
+
+mybatis_plus:
+  configuration:
+    log-impl: org.apache.ibatis.logging.stdout.StdOutImpl
+  # ?????
+  mapper-locations: classpath:/mapper/**.xml
+  type-handlers-package: com.bupt.ilink.typehandler
+  # ?????
+  #  mapper-locations: classpath*:mapper/*.xml
+  type-aliases-package: com.bupt.ilink.entity
