@@ -8,6 +8,7 @@ import org.springframework.web.servlet.ModelAndView;
 import com.semester.utils.R;
 import com.semester.jwt.*;
 import com.semester.mapper.usernameMapper;
+
 @RestController
 @RequestMapping("/User")
 public class UserController {
@@ -35,5 +36,11 @@ public class UserController {
             }
         }
         return R.failure("注册失败");
+    }
+
+
+    @GetMapping("/test")
+    public R test() {
+        return R.ok("成功");
     }
 }

@@ -13,12 +13,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 import jakarta.annotation.PostConstruct;
 import com.semester.service.UserService;
-
 @Component
 public class JwtUtil {
-
-    @Autowired
-    private UserService userService;
 
     private static final long EXPIRE_TIME = 30 * 60 * 1000; // 30分钟过期时间
     private static final String SECRET = "buptnovel"; //密钥字符串
@@ -28,9 +24,8 @@ public class JwtUtil {
             Date date = new Date(System.currentTimeMillis() + EXPIRE_TIME);
             Algorithm algorithm = Algorithm.HMAC256(SECRET);
             return JWT.create()
-
                     .withClaim("username", username)
-                    .withClaim("password",password)
+                    .withClaim("password", password)
                     .withExpiresAt(date)
                     .sign(algorithm);
         } catch (Exception e) {
@@ -39,17 +34,16 @@ public class JwtUtil {
         }
     }
 
-    public boolean checkSign(String token) {
+    public static boolean checkSign(String token, UserService userService) {
         try {
             Algorithm algorithm = Algorithm.HMAC256(SECRET);
             JWTVerifier verifier = JWT.require(algorithm).build();
             DecodedJWT jwt = verifier.verify(token);
             Map<String, Claim> claims = jwt.getClaims();
-            String userId = claims.get("userId").asString();
             String username = claims.get("username").asString();
-            String un = userService.getUsernameById(userId);
-            if (!un.equals(username)) {
-                throw new RuntimeException("token无效，请重新登录");
+            // 在这里验证token中的信息是否与数据库中的信息匹配，例如username
+            if (username == null || !userService.usernameExists(username)) {
+                throw new RuntimeException("Token无效，请重新登录");
             }
             return true;
         } catch (JWTVerificationException exception) {
@@ -57,7 +51,7 @@ public class JwtUtil {
         }
     }
 
-    public String getTokenClaims(String token, String name) {
+    public static String getTokenClaims(String token, String name) {
         try {
             Algorithm algorithm = Algorithm.HMAC256(SECRET);
             JWTVerifier verifier = JWT.require(algorithm).build();
