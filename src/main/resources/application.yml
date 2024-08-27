@@ -1,41 +1,19 @@
-server:
-  port: 8080
-  servlet:
-    context-path: /
 spring:
   datasource:
-    # jdbc ??????
-    #    username: root
-    #    password: '123456'
-    #    url: jdbc:mysql://127.0.0.1:3306/ilink?characterEncoding=UTF-8&serverTimezone=UTC
-    #    driver-class-name: com.mysql.cj.jdbc.Driver
-    #    type: com.alibaba.druid.pool.DruidDataSource
-
+    url: jdbc:mysql://localhost:3306/novelreader?useSSL=false&serverTimezone=UTC
     username: root
-    password: 'ilink1234'
+    password: Y1j1i1123
+
+  jpa:
+    hibernate:
+      ddl-auto: update
+    properties:
+      hibernate:
+        dialect: org.hibernate.dialect.MySQLDialect
+    show-sql: true
 
 
-  #  ????????
-  servlet:
-    multipart:
-      max-file-size: 200MB
-      max-request-size: 200MB
+# 禁用 Spring Security 自动配置
 
-  mvc:
-    pathmatch:
-      matching-strategy: ant_path_matcher
-
-  jackson:
-    time-zone: Asia/Shanghai
-
-pagehelper:
-  auto-dialect: true
-  reasonable: true
-  support-methods-arguments: true
-  page-size-zero: true
-  params: count=countSql
-
-mybatis:
-  configuration:
-    map-underscore-to-camel-case: true
-
+  autoconfigure:
+    exclude: org.springframework.boot.autoconfigure.security.servlet.SecurityAutoConfiguration
