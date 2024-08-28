@@ -1,19 +1,12 @@
 package com.semester.controller;
 
 import com.semester.service.UserService;
-import org.apache.ibatis.annotations.Param;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
-import org.springframework.web.servlet.ModelAndView;
 import com.semester.utils.R;
 import com.semester.jwt.*;
-import com.semester.mapper.usernameMapper;
 
 
-import com.semester.service.UserService;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.*;
-import com.semester.utils.R;
 import com.semester.jwt.JwtUtil;
 
 @RestController
