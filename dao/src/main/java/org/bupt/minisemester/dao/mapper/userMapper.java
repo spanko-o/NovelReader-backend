@@ -1,4 +1,4 @@
-package org.bupt.minisemester.mapper;
+package org.bupt.minisemester.dao.mapper;
 
 import org.apache.ibatis.annotations.Insert;
 import org.apache.ibatis.annotations.Mapper;
