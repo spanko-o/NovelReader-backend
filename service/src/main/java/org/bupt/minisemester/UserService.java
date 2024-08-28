@@ -1,6 +1,6 @@
 package org.bupt.minisemester;
 
-import org.bupt.minisemester.mapper.userMapper;
+import org.bupt.minisemester.dao.mapper.userMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 

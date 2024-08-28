@@ -21,6 +21,12 @@
             <version>3.10.3</version>
         </dependency>
 
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-web</artifactId>
+        </dependency>
+
+
             <!-- Other dependencies -->
             <dependency>
                 <groupId>org.BUPT.mini-semester</groupId>
