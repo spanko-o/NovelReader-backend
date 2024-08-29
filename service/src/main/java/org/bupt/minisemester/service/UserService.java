@@ -1,4 +1,4 @@
-package org.bupt.minisemester;
+package org.bupt.minisemester.service;
 
 import org.bupt.minisemester.dao.mapper.userMapper;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -23,7 +23,7 @@ public class UserService {
         return usernamemapper.getPassword(username);
     }
 
-    public boolean insert(String userId,String username, String password, String name) {
-        return usernamemapper.insert(userId,username, password, name);
+    public boolean insert(String userId,String username, String password) {
+        return usernamemapper.insert(userId,username, password);
     }
 }

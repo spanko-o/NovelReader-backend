@@ -1,4 +1,4 @@
-package org.bupt.minisemester.utils;
+package org.bupt.minisemester.common.util;
 
 
 import lombok.Data;

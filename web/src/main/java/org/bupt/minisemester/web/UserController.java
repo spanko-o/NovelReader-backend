@@ -1,13 +1,14 @@
 package org.bupt.minisemester.web;
 
-import org.bupt.minisemester.UserService;
+import org.bupt.minisemester.common.jwt.JwtToken;
+import org.bupt.minisemester.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
-import org.bupt.minisemester.utils.R;
-import org.bupt.minisemester.jwt.*;
+import org.bupt.minisemester.common.util.R;
+import org.bupt.minisemester.common.jwt.*;
 import java.util.UUID;
 
-import  org.bupt.minisemester.jwt.JwtUtil;
+import org.bupt.minisemester.common.jwt.JwtUtil;
 
 @RestController
 @RequestMapping("/User")
@@ -31,10 +32,10 @@ public class UserController {
     }
 
     @PostMapping("/signup")
-    public R signup(@RequestParam("username") String username, @RequestParam("password") String password, @RequestParam("name") String name) {
+    public R signup(@RequestParam("username") String username, @RequestParam("password") String password) {
         String userId = UUID.randomUUID().toString();
-        if (username != null && password != null && name != null) {
-            boolean success = userService.insert(userId,username, password, name);
+        if (username != null && password != null) {
+            boolean success = userService.insert(userId,username, password);
             if (success) {
                 return R.ok("注册成功");
             }

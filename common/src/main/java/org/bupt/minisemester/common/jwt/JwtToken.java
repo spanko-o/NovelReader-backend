@@ -1,4 +1,4 @@
-package org.bupt.minisemester.jwt;
+package org.bupt.minisemester.common.jwt;
 
 import java.lang.annotation.ElementType;
 import java.lang.annotation.Retention;

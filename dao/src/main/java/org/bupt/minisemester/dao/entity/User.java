@@ -19,7 +19,7 @@ import java.util.UUID;
 @TableName("User") // MyBatis-Plus 注解
 public class User {
     @Id
-    @TableId(value = "uid", type = IdType.ASSIGN_UUID)
+    @TableId(value = "user_id", type = IdType.ASSIGN_UUID)
     private String userId = UUID.randomUUID().toString();
 
     @NotEmpty(message = "用户名不能为空")
