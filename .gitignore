@@ -34,3 +34,15 @@ build/
 
 # Ignore local configuration files
 /web/src/main/resources/application-local.yml
+
+# 忽略所有日志文件和日志目录
+logs/
+*.log
+
+# 忽略具体的日志文件，防止其上传到 Git
+logs/novelreader.log
+logs/novelreader-*.log
+
+# 确保忽略 Logback 的默认日志路径
+spring.log
+
