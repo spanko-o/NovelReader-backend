@@ -1,11 +1,11 @@
-package org.bupt.minisemester.jwt;
+package org.bupt.minisemester.common.jwt;
 
 import com.auth0.jwt.JWT;
 import com.auth0.jwt.JWTVerifier;
 import com.auth0.jwt.algorithms.Algorithm;
 import com.auth0.jwt.interfaces.Claim;
 import com.auth0.jwt.interfaces.DecodedJWT;
-import org.bupt.minisemester.UserService;
+import org.bupt.minisemester.service.UserService;
 import org.springframework.stereotype.Component;
 
 import java.util.Date;

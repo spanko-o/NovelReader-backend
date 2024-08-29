@@ -1,6 +1,6 @@
-package org.bupt.minisemester.jwt;
+package org.bupt.minisemester.common.jwt;
 
-import org.bupt.minisemester.UserService;
+import org.bupt.minisemester.service.UserService;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import org.springframework.beans.factory.annotation.Autowired;
