@@ -11,6 +11,9 @@
 	<artifactId>service</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
 	<name>service</name>
+	<properties>
+		<org.apache.lucene>8.3.0</org.apache.lucene>
+	</properties>
 	<description>service</description>
 
 	<dependencies>
@@ -30,6 +33,49 @@
 			<artifactId>dao</artifactId>
 			<version>0.0.1-SNAPSHOT</version>
 		</dependency>
+		<!--Searcj-->
+		<dependency>
+			<groupId>org.apache.lucene</groupId>
+			<artifactId>lucene-core</artifactId>
+			<version>${org.apache.lucene}</version>
+		</dependency>
+		<dependency>
+			<groupId>org.apache.lucene</groupId>
+			<artifactId>lucene-analyzers-common</artifactId>
+			<version>${org.apache.lucene}</version>
+		</dependency>
+		<dependency>
+			<groupId>org.apache.lucene</groupId>
+			<artifactId>lucene-highlighter</artifactId>
+			<version>${org.apache.lucene}</version>
+		</dependency>
+		<dependency>
+			<groupId>org.apache.lucene</groupId>
+			<artifactId>lucene-queries</artifactId>
+			<version>${org.apache.lucene}</version>
+		</dependency>
+		<dependency>
+			<groupId>org.apache.lucene</groupId>
+			<artifactId>lucene-queryparser</artifactId>
+			<version>${org.apache.lucene}</version>
+		</dependency>
+		<dependency>
+			<groupId>org.apache.lucene</groupId>
+			<artifactId>lucene-memory</artifactId>
+			<version>${org.apache.lucene}</version>
+		</dependency>
+		<dependency>
+			<groupId>org.apache.lucene</groupId>
+			<artifactId>lucene-analyzers-smartcn</artifactId>
+			<version>${org.apache.lucene}</version>
+		</dependency>
+		<dependency>
+		<groupId>org.apache.lucene</groupId>
+		<artifactId>lucene-join</artifactId>
+		<version>${org.apache.lucene}</version>
+
+		</dependency>
+
 
 	</dependencies>
 
