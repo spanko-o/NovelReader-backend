@@ -21,7 +21,7 @@
 
         <dependency>
             <groupId>org.BUPT.mini-semester</groupId>
-            <artifactId>service</artifactId>
+            <artifactId>api</artifactId>
             <version>0.0.1-SNAPSHOT</version>
         </dependency>
 
