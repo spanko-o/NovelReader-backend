@@ -1,5 +1,6 @@
 package org.bupt.minisemester.web;
 
+import org.bupt.minisemester.common.jwt.JwtToken;
 import org.bupt.minisemester.service.BookUploadedService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
