@@ -33,9 +33,6 @@ public class BookUploaded implements Serializable {
     @TableField("noveltype")
     private String noveltype;
 
-    @OneToMany(mappedBy = "book_uploaded", cascade = CascadeType.ALL, orphanRemoval = true)
-    private List<ChapterUploaded> chapterlist;
-
     // Getters and Setters
     public int getbookid() {
         return bookid;

@@ -37,4 +37,15 @@ public class ChapterUploadedServiceImpl implements ChapterUploadedService {
     public void deleteChapter(int id) {
         chapterUploadedMapper.deleteById(id);
     }
+
+    @Override
+    public void checkBookById(int id) {
+        try{
+            int index = chapterUploadedMapper.countByBookId(id);
+            if (index == 0) {
+                throw new noSuchBook("No book found");
+            }
+        }
+        catch(Exception e){}
+    }
 }
