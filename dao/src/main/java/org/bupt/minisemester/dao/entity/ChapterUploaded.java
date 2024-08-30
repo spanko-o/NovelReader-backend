@@ -22,8 +22,8 @@ public class ChapterUploaded implements Serializable {
     private String title;
 
     @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "bookid")
-    private BookUploaded bookUploaded;
+    @JoinColumn(name = "book_uploaded")
+    private BookUploaded book_uploaded;
 
     @TableField("content")
     private String content;
@@ -44,19 +44,4 @@ public class ChapterUploaded implements Serializable {
         this.title = title;
     }
 
-    public BookUploaded getBookUploaded() {
-        return bookUploaded;
-    }
-
-    public void setBookUploaded(BookUploaded bookUploaded) {
-        this.bookUploaded = bookUploaded;
-    }
-
-    public String getContent() {
-        return content;
-    }
-
-    public void setContent(String content) {
-        this.content = content;
-    }
 }
