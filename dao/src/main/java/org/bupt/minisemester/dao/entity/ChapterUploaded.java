@@ -7,7 +7,6 @@ import jakarta.persistence.*;
 import lombok.Data;
 
 import java.io.Serializable;
-import java.sql.Timestamp;
 
 @Data
 @Entity
@@ -22,14 +21,8 @@ public class ChapterUploaded implements Serializable {
     @TableField("title")
     private String title;
 
-    @TableField("ctime")
-    private Timestamp ctime;
-
-    @TableField("mtime")
-    private Timestamp mtime;
-
     @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "book_id")
+    @JoinColumn(name = "bookid")
     private BookUploaded bookUploaded;
 
     @TableField("content")
@@ -49,22 +42,6 @@ public class ChapterUploaded implements Serializable {
 
     public void setTitle(String title) {
         this.title = title;
-    }
-
-    public Timestamp getCtime() {
-        return ctime;
-    }
-
-    public void setCtime(Timestamp ctime) {
-        this.ctime = ctime;
-    }
-
-    public Timestamp getMtime() {
-        return mtime;
-    }
-
-    public void setMtime(Timestamp mtime) {
-        this.mtime = mtime;
     }
 
     public BookUploaded getBookUploaded() {

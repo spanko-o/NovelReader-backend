@@ -2,24 +2,21 @@ package org.bupt.minisemester.common.util;
 
 import java.io.*;
 import java.util.regex.*;
-
+import java.lang.String;
 
 public class NovelSpliter {
-    public static void main(String[] args) {
-        String inputFilePath = "input.txt";
+    private String content;
 
+    // 构造函数，接收字符串作为参数
+    public NovelSpliter(String content) {
+        this.content = content;
+    }
+
+    public void split() {
         try {
-            BufferedReader reader = new BufferedReader(new FileReader(inputFilePath));
-            StringBuilder content = new StringBuilder();
-            String line;
-            while ((line = reader.readLine()) != null) {
-                content.append(line).append("\n");
-            }
-            reader.close();
-
             // 定义正则表达式模式，匹配“第几回”或“第几章”，其中“几”可以是长度不超过4个汉字的任意字符
             Pattern pattern = Pattern.compile("(第.{1,4}?[回章])");
-            Matcher matcher = pattern.matcher(content.toString());
+            Matcher matcher = pattern.matcher(content);
 
             int start = 0;
             int index = 1;
@@ -31,7 +28,7 @@ public class NovelSpliter {
                 if (end > 0) {
                     String preface = content.substring(start, end).trim();
                     if (!preface.isEmpty()) {
-                        writeToFile( "前言.txt", "前言\n" + preface);
+                        writeToFile("前言.txt", "前言\n" + preface);
                         index++;
                     }
                 }
@@ -75,3 +72,4 @@ public class NovelSpliter {
         writer.close();
     }
 }
+

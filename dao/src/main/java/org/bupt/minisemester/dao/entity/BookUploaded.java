@@ -17,8 +17,8 @@ import java.util.List;
 public class BookUploaded implements Serializable {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @TableId("book_id")
-    private int Bookid;
+    @TableId("bookid")
+    private int bookid;
 
     @NotEmpty(message = "标题不能为空")
     @TableField("title")
@@ -33,16 +33,16 @@ public class BookUploaded implements Serializable {
     @TableField("noveltype")
     private String noveltype;
 
-    @OneToMany(mappedBy = "book_id")
+    @OneToMany(mappedBy = "bookUploaded", cascade = CascadeType.ALL, orphanRemoval = true)
     private List<ChapterUploaded> chapterlist;
 
     // Getters and Setters
-    public int getBookid() {
-        return Bookid;
+    public int getbookid() {
+        return bookid;
     }
 
-    public void setBookid(int bookid) {
-        Bookid = bookid;
+    public void setbookid(int book_id) {
+        bookid = book_id;
     }
 
     public String getTitle() {
