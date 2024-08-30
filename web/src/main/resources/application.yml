@@ -16,6 +16,10 @@ spring:
       root: info
       org.bupt.minisemester: debug
 
+zhipuai:
+  api:
+    secret-key: "4f477d4825d49561235b85b0df0acc69.RCvVx7rOnKaAmQL1"
+
 
 mybatis:
   mapper-locations: classpath:mappers/*.xml
