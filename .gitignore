@@ -33,7 +33,7 @@ build/
 .vscode/
 
 # Ignore local configuration files
-/web/src/main/resources/application-local.yml
+.web/src/main/resources/application-local.yml
 
 .log
 
