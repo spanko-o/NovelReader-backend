@@ -7,7 +7,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.util.StringUtils;
 
 @Service
-public class NovelService {
+public class NovelServiceGlobal {
 
     @Autowired
     private NovelMapper novelmapper;
