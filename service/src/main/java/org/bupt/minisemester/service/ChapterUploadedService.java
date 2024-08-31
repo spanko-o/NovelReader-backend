@@ -14,5 +14,6 @@ public interface ChapterUploadedService {
     void saveChapter(ChapterUploaded chapter);
     void updateChapter(ChapterUploaded chapter);
     void deleteChapter(int id);
+    void checkBookById(int id);
 }
 

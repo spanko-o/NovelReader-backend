@@ -45,7 +45,6 @@ public class indexService {
                 doc.add(new TextField("author", novel.get("author"), Field.Store.YES));
                 doc.add(new TextField("noveltype", novel.get("noveltype"), Field.Store.YES));
                 doc.add(new TextField("picture", novel.get("picture"), Field.Store.YES));
-
                 indexWriter.addDocument(doc);
             }
 
