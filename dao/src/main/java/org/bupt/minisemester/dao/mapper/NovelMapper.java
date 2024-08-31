@@ -1,6 +1,7 @@
 package org.bupt.minisemester.dao.mapper;
 
 import com.baomidou.mybatisplus.core.mapper.BaseMapper;
+import org.apache.ibatis.annotations.Insert;
 import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Param;
 import org.apache.ibatis.annotations.Select;
@@ -26,4 +27,7 @@ public interface NovelMapper extends BaseMapper<Novel> {
 
     @Select("SELECT title from chapter_uploaded where book_uploaded = #{bid}")
     List<Map<String, String>> selectChapterUploaded(@Param("bid") int bid);
+
+    @Insert("INSERT INTO novel (title, description, author, noveltype) VALUES (#{title}, #{description}, #{author}, #{noveltype})")
+    void insertBookUploaded(@Param("title") String title, @Param("description") String description, @Param("author") String author, @Param("noveltype") String noveltype);
 }

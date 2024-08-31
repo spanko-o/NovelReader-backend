@@ -1,16 +1,16 @@
 package org.bupt.minisemester.service;
 
 import org.bupt.minisemester.dao.entity.*;
-import org.bupt.minisemester.dao.mapper.BookUploadedMapper;
+import org.bupt.minisemester.dao.mapper.NovelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.util.StringUtils;
 
 @Service
-public class BookUploadedService {
+public class NovelService {
 
     @Autowired
-    private BookUploadedMapper bookUploadedMapper;
+    private NovelMapper novelmapper;
 
     public void addBookUploaded(String title, String description, String author, String noveltype) {
         if (!StringUtils.hasText(title)) {
@@ -22,6 +22,6 @@ public class BookUploadedService {
         novel.setDescription(description);
         novel.setAuthor(author);
         novel.setNoveltype(noveltype);
-        bookUploadedMapper.insertBookUploaded(title, description, author, noveltype);
+        this.novelmapper.insertBookUploaded(title, description, author, noveltype);
     }
 }
