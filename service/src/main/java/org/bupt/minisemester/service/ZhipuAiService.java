@@ -56,6 +56,7 @@ public class ZhipuAiService {
 
         ModelApiResponse response = zhipuAiClient.invokeModelApi(chatCompletionRequest);
         try{
+            System.out.println(response.toString());
             return objectMapper.writeValueAsString(response.getData().getChoices().get(0).getMessage().getContent());
         }catch (JsonProcessingException e){
             throw new RuntimeException(e);
