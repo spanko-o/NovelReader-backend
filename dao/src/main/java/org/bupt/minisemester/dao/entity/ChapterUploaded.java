@@ -5,6 +5,8 @@ import com.baomidou.mybatisplus.annotation.TableId;
 import com.baomidou.mybatisplus.annotation.TableName;
 import jakarta.persistence.*;
 import lombok.Data;
+import lombok.Getter;
+import lombok.Setter;
 
 import java.io.Serializable;
 
@@ -13,37 +15,26 @@ import java.io.Serializable;
 @Table(name = "chapter_uploaded")
 @TableName("chapter_uploaded")
 public class ChapterUploaded implements Serializable {
+    @Setter
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @TableId("id")
-    private int id;
+    @TableId("cid")
+    private int cid;
 
+    @Getter
+    @Setter
     @TableField("title")
     private String title;
 
+    @Getter
     @TableField("book_uploaded")
     private int book_uploaded;
 
     @TableField("content")
     private String content;
 
-    public int getId() {
-        return id;
-    }
+    @ManyToOne
+    @JoinColumn(name="novel")
+    private Novel novel;
 
-    public void setId(int id) {
-        this.id = id;
-    }
-
-    public String getTitle() {
-        return title;
-    }
-
-    public void setTitle(String title) {
-        this.title = title;
-    }
-
-    public int getBook_uploaded() {
-        return book_uploaded;
-    }
 }

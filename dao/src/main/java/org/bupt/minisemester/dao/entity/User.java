@@ -7,10 +7,12 @@ import com.baomidou.mybatisplus.annotation.TableName;
 import com.baomidou.mybatisplus.annotation.TableField;
 import jakarta.persistence.Entity;
 import jakarta.persistence.Id;
+import jakarta.persistence.OneToMany;
 import jakarta.persistence.Table;
 import jakarta.validation.constraints.NotEmpty;
 import lombok.Data;
 
+import java.util.List;
 import java.util.UUID;
 
 @Data
@@ -30,4 +32,6 @@ public class User {
     @TableField("password")
     private String password;
 
+    @OneToMany(mappedBy = "id")
+    private List<Novel> star_novels;
 }

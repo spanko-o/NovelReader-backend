@@ -7,6 +7,11 @@ import com.baomidou.mybatisplus.annotation.TableField;
 import jakarta.persistence.*;
 import jakarta.validation.constraints.NotEmpty;
 import lombok.Data;
+import lombok.Getter;
+import lombok.Setter;
+import org.hibernate.query.UnknownNamedQueryException;
+
+import java.util.List;
 
 @Data
 @Entity // JPA 注解
@@ -18,57 +23,35 @@ public class Novel {
     @GeneratedValue(strategy = GenerationType.IDENTITY)// MyBatis-Plus 注解，设置 id 为自增主键
     private Integer id;
 
+    @Setter
     @NotEmpty(message = "标题不能为空")
     @TableField("title") // 对应数据库中的字段 title
     private String title;
 
+    @Setter
     @TableField("description") // 对应数据库中的字段 description
     private String description;
 
+    @Getter
+    @Setter
     @TableField("author") // 对应数据库中的字段 author
     private String author;
 
+    @Setter
     @TableField("noveltype") // 对应数据库中的字段 noveltype
     private String noveltype;
 
     @TableField("picture") // 对应数据库中的字段 picture
     private String picture;
 
+    @OneToMany(mappedBy = "novel")
+    private List<ChapterUploaded> chapterList;
 
-    public Integer getId() {
-        return id;
-    }
-    public void setId(Integer id) {
-        this.id = id;
-    }
-    public String getTitle() {
-        return title;
-    }
-    public void setTitle(String title) {
-        this.title = title;
-    }
-    public String getDescription() {
-        return description;
-    }
-    public void setDescription(String description) {
-        this.description = description;
-    }
-    public String getAuthor() {
-        return author;
-    }
-    public void setAuthor(String author) {
-        this.author = author;
-    }
-    public String getNoveltype() {
-        return noveltype;
-    }
-    public void setNoveltype(String noveltype) {
-        this.noveltype = noveltype;
-    }
-    public String getPicture() {
-        return picture;
-    }
-    public void setPicture(String picture) {
-        this.picture = picture;
-    }
+    @TableField("status")
+    private boolean status;
+
+    @ManyToOne
+    @JoinColumn(name="userid")
+    private User user;
+
 }
