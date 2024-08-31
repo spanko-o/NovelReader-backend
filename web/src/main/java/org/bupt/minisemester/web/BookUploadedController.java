@@ -1,7 +1,6 @@
 package org.bupt.minisemester.web;
 
-import org.bupt.minisemester.common.jwt.JwtToken;
-import org.bupt.minisemester.service.BookUploadedService;
+import org.bupt.minisemester.service.NovelService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
@@ -10,7 +9,7 @@ import org.springframework.web.bind.annotation.*;
 public class BookUploadedController {
 
     @Autowired
-    private BookUploadedService bookUploadedService;
+    private NovelService bookUploadedService;
 
     @PostMapping("/add")
     public String addBookUploaded(@RequestParam String title, @RequestParam String desc, @RequestParam String author, @RequestParam String noveltype) {

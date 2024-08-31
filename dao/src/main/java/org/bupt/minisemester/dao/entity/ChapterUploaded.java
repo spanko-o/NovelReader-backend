@@ -26,10 +26,6 @@ public class ChapterUploaded implements Serializable {
     @TableField("title")
     private String title;
 
-    @Getter
-    @TableField("book_uploaded")
-    private int book_uploaded;
-
     @TableField("content")
     private String content;
 
