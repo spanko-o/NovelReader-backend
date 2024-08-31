@@ -1,6 +1,6 @@
 package org.bupt.minisemester.service;
 
-import org.bupt.minisemester.dao.entity.BookUploaded;
+import org.bupt.minisemester.dao.entity.*;
 import org.bupt.minisemester.dao.mapper.BookUploadedMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -17,11 +17,11 @@ public class BookUploadedService {
             throw new IllegalArgumentException("标题不能为空");
         }
 
-        BookUploaded bookUploaded = new BookUploaded();
-        bookUploaded.setTitle(title);
-        bookUploaded.setDescription(description);
-        bookUploaded.setAuthor(author);
-        bookUploaded.setNoveltype(noveltype);
+        Novel novel = new Novel();
+        novel.setTitle(title);
+        novel.setDescription(description);
+        novel.setAuthor(author);
+        novel.setNoveltype(noveltype);
         bookUploadedMapper.insertBookUploaded(title, description, author, noveltype);
     }
 }

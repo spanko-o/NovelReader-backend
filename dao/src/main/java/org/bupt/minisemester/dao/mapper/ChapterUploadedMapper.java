@@ -8,6 +8,6 @@ import org.apache.ibatis.annotations.Mapper;
 
 @Mapper
 public interface ChapterUploadedMapper extends BaseMapper<ChapterUploaded> {
-    @Select("select COUNT(*) from book_uploaded where bookid = #{bid}")
+    @Select("select COUNT(*) from novel where id = #{bid}")
     int countByBookId(int bid);
 }
