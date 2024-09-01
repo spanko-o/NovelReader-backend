@@ -15,6 +15,9 @@ spring:
     level:
       root: info
       org.bupt.minisemester: debug
+  servlet:
+    multipart:
+      max-file-size: 50MB
 
 zhipuai:
   api:

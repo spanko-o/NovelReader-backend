@@ -30,7 +30,6 @@ public class ChapterUploaded implements Serializable {
     private String content;
 
     @ManyToOne
-    @JoinColumn(name="novel")
+    @JoinColumn(name="novel_id")
     private Novel novel;
-
 }

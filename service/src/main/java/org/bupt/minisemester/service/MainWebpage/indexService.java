@@ -39,19 +39,19 @@ public class indexService {
             List<Map<String, String>> novelList = novelMapper.selectNovel();
             for (Map<String, String> novel : novelList) {
                 Document doc = new Document();
-                doc.add(new TextField("id", String.valueOf(novel.get("id")), Field.Store.YES));
-                doc.add(new TextField("title", novel.get("title"), Field.Store.YES));
-                doc.add(new TextField("description", novel.get("description"), Field.Store.YES));
-                doc.add(new TextField("author", novel.get("author"), Field.Store.YES));
-                doc.add(new TextField("noveltype", novel.get("noveltype"), Field.Store.YES));
-                doc.add(new TextField("picture", novel.get("picture"), Field.Store.YES));
+                doc.add(new TextField("id", String.valueOf(novel.getOrDefault("id","")), Field.Store.YES));
+                doc.add(new TextField("title", novel.getOrDefault("title",""), Field.Store.YES));
+                doc.add(new TextField("description", novel.getOrDefault("description",""), Field.Store.YES));
+                doc.add(new TextField("author", novel.getOrDefault("author",""), Field.Store.YES));
+                doc.add(new TextField("noveltype", novel.getOrDefault("noveltype",""), Field.Store.YES));
+                doc.add(new TextField("picture", novel.getOrDefault("picture",""), Field.Store.YES));
                 indexWriter.addDocument(doc);
             }
 
             indexWriter.close();
             System.out.println("索引重新创建完成！");
         } catch (IOException e) {
-            e.printStackTrace();
+            throw new RuntimeException(e);
         }
     }
 
