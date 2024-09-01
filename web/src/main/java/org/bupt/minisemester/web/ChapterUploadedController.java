@@ -26,7 +26,6 @@ public class ChapterUploadedController {
 
     @PostMapping
     public void saveChapter(@RequestBody ChapterUploaded chapter) {
-        chapterUploadedService.checkBookById(chapter.getBook_uploaded());
         chapterUploadedService.saveChapter(chapter);
     }
 

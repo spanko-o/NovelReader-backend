@@ -2,7 +2,7 @@
     datasource:
       url: jdbc:mysql://localhost:3306/novelreader?characterEncoding=UTF-8&serverTimezone=UTC
       username: root
-      password: twrmax1234
+      password: 123456
       driver-class-name: com.mysql.cj.jdbc.Driver
     jpa:
       hibernate:

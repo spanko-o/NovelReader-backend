@@ -1,6 +1,6 @@
 package org.bupt.minisemester.web;
 
-import org.bupt.minisemester.service.NovelService;
+import org.bupt.minisemester.service.NovelServiceGlobal;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
@@ -9,7 +9,7 @@ import org.springframework.web.bind.annotation.*;
 public class BookUploadedController {
 
     @Autowired
-    private NovelService bookUploadedService;
+    private NovelServiceGlobal bookUploadedService;
 
     @PostMapping("/add")
     public String addBookUploaded(@RequestParam String title, @RequestParam String desc, @RequestParam String author, @RequestParam String noveltype) {
