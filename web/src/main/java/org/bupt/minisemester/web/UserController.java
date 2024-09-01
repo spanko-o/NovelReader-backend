@@ -20,6 +20,7 @@ public class UserController {
     @Autowired
     private JwtUtil jwtUtil;  // 通过依赖注入获取 JwtUtil 实例
 
+
     @PostMapping("/login")
     public R login(@RequestParam("username") String username, @RequestParam("password") String password) {
         String storedPassword = userService.getPassword(username);
@@ -32,7 +33,9 @@ public class UserController {
     }
 
     @PostMapping("/signup")
-    public R signup(@RequestParam("username") String username, @RequestParam("password") String password) {
+    public R signup(@RequestParam("username") String username, @RequestParam("password") String password,@RequestParam("re_password") String re_password) {
+
+
         String userId = UUID.randomUUID().toString();
         if (username != null && password != null) {
             boolean success = userService.insert(userId,username, password);

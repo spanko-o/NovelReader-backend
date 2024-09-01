@@ -41,38 +41,37 @@ public class MainController {
                 .build();
     }
 
-    @JwtToken
-    @GetMapping("/Main/p={page}")
-    public R NovelList(@PathVariable("page") String p) {
+
+    @GetMapping("/Main")
+    public R NovelList(@RequestParam(value = "page", defaultValue = "1") int page) {
         try {
-        int  page;
-        if(p.isEmpty())
-        {
-          page=1;
-        }else{
-        page = Integer.parseInt(p);
-        }
-        int pageSize = 4;
-        int offset = (page - 1) * pageSize;
-        String cacheKey = "novelPage_" + page;
+            int pageSize = 4; // 每页显示4条数据
+            int maxPages = 3; // 最大页数为3页
+            int offset = (page - 1) * pageSize;
 
-        List<Map<String, String>> paginatedList = cache.getIfPresent(cacheKey);
-
-        if (paginatedList == null) {
+            // 获取所有小说数据
             List<Map<String, String>> novellist = novelService.getNovel();
-            paginatedList = novellist.subList(Math.min(offset, novellist.size()),
-                    Math.min(offset + pageSize, novellist.size()));//计算从哪里开始截取页面
-            cache.put(cacheKey, paginatedList);
-        }
 
-        return R.ok(paginatedList);
-    }
-    catch(Exception e){
-        throw new RuntimeException("Failed to get novel data", e);
+            // 如果总数据量大于12条，截取前12条
+            if (novellist.size() > pageSize * maxPages) {
+                novellist = novellist.subList(0, pageSize * maxPages);
+            }
+
+            // 计算当前页的分页数据
+            List<Map<String, String>> paginatedList = novellist.subList(
+                    Math.min(offset, novellist.size()),
+                    Math.min(offset + pageSize, novellist.size())
+            );
+
+            // 仅返回当前页的数据列表
+            return R.ok(paginatedList);
+        } catch (Exception e) {
+            return R.failure("Failed to get novel data: " + e.getMessage());
         }
     }
-    @JwtToken
-    @PostMapping("/search")
+
+
+    @GetMapping("/search")
     public R search(@RequestParam("query") String query) {
         try{
 
