@@ -19,6 +19,7 @@ import java.util.List;
 @TableName("novel") // MyBatis-Plus 注解，表名为小写
 public class Novel {
 
+    @Getter
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)// MyBatis-Plus 注解，设置 id 为自增主键
     private Integer id;
@@ -47,7 +48,7 @@ public class Novel {
     @OneToMany(mappedBy = "novel")
     private List<ChapterUploaded> chapterList;
 
-    @TableField("status")
+    @TableField("status") // 说明是官方上传的还是用户上传的：1是官方上传的，0为用户上传的
     private boolean status;
 
     @ManyToOne
