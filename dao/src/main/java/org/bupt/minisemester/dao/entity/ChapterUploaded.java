@@ -16,6 +16,7 @@ import java.io.Serializable;
 @TableName("chapter_uploaded")
 public class ChapterUploaded implements Serializable {
     @Setter
+    @Getter
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @TableId("cid")
@@ -26,9 +27,13 @@ public class ChapterUploaded implements Serializable {
     @TableField("title")
     private String title;
 
+    @Getter
+    @Setter
     @TableField("content")
     private String content;
 
+    @Getter
+    @Setter
     @ManyToOne
     @JoinColumn(name="novel_id")
     private Novel novelId;

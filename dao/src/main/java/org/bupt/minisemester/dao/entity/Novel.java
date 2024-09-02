@@ -56,4 +56,12 @@ public class Novel {
     @JoinColumn(name="user_id")
     private User user;
 
+    public Novel(){}
+    public Novel(String title, String description, String author, String noveltype, String picture) {
+        this.title = title;
+        this.description = description;
+        this.author = author;
+        this.noveltype = noveltype;
+        this.picture = picture;
+    }
 }
