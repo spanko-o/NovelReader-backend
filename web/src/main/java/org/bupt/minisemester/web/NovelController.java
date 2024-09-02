@@ -23,6 +23,7 @@ public class NovelController {
     @Autowired
     private NovelServiceGlobal novelService;
 
+    @JwtToken
     @GetMapping("/{id}")
     public List<Map<String, String>> getNovel(@PathVariable int id) {
            return novelService.getBookUploaded(id);
@@ -56,12 +57,13 @@ public class NovelController {
     }
 
     @PostMapping("/add")
-    public R addBookUploaded(@RequestParam String title, @RequestParam String desc, @RequestParam String author, @RequestParam String noveltype) {
-        try{
-            novelService.addBookUploaded(title, desc, author, noveltype);
-        }catch (Exception e){
+    public R addBookUploaded(@RequestBody Novel novel) {
+        try {
+            novelService.addBookUploaded(novel);
+        } catch (Exception e) {
             return R.failure(e.getMessage());
         }
-        return R.ok();
+        return R.ok("小说信息上传成功");
     }
+
 }

@@ -28,6 +28,7 @@ public interface NovelMapper extends BaseMapper<Novel> {
     @Select("SELECT author,description,noveltype,picture,title from novel where id = #{nid}")
     List<Map<String, String>> selectNovelDetails(@Param("nid") int nid);
 
-    @Insert("INSERT INTO novel (title, description, author, noveltype) VALUES (#{title}, #{description}, #{author}, #{noveltype})")
-    void insertBookUploaded(@Param("title") String title, @Param("description") String description, @Param("author") String author, @Param("noveltype") String noveltype);
+    @Insert("INSERT INTO novel (title, description, author, noveltype, status) VALUES (#{title}, #{description}, #{author}, #{noveltype}, 0)")
+    void insertBookUploaded(Novel novel);
+
 }

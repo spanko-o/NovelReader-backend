@@ -49,18 +49,26 @@ public class NovelServiceGlobal {
 
     }
 
-    public void addBookUploaded(String title, String description, String author, String noveltype) {
-        if (!StringUtils.hasText(title)) {
-            throw new IllegalArgumentException("标题不能为空");
-        }
-
-        Novel novel = new Novel();
-        novel.setTitle(title);
-        novel.setDescription(description);
-        novel.setAuthor(author);
-        novel.setNoveltype(noveltype);
-        this.novelMapper.insertBookUploaded(title, description, author, noveltype);
+//    public void addBookUploaded(String title, String description, String author, String noveltype) {
+//        if (!StringUtils.hasText(title)) {
+//            throw new IllegalArgumentException("标题不能为空");
+//        }
+//
+//        Novel novel = new Novel();
+//        novel.setTitle(title);
+//        novel.setDescription(description);
+//        novel.setAuthor(author);
+//        novel.setNoveltype(noveltype);
+//        this.novelMapper.insertBookUploaded(title, description, author, noveltype);
+//    }
+    public void addBookUploaded(Novel novel) {
+    if (!StringUtils.hasText(novel.getTitle())) {
+        throw new IllegalArgumentException("标题不能为空");
     }
+
+    this.novelMapper.insertBookUploaded(novel);
+}
+
 
     public List<Map<String, String>> getBookUploaded(Integer nid) {
         return this.novelMapper.selectNovelDetails(nid);

@@ -1,5 +1,6 @@
 package org.bupt.minisemester.web;
 
+import org.bupt.minisemester.common.jwt.JwtToken;
 import org.bupt.minisemester.dao.entity.ChapterUploaded;
 import org.bupt.minisemester.service.ChapterUploadedService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -14,16 +15,19 @@ public class ChapterUploadedController {
     @Autowired
     private ChapterUploadedService chapterUploadedService;
 
+    @JwtToken
     @GetMapping("/{id}")
     public ChapterUploaded getChapterById(@PathVariable int id) {
         return chapterUploadedService.getChapterById(id);
     }
 
+    @JwtToken
     @GetMapping("/novel")
     public List<ChapterUploaded> getAllChapters() {
         return chapterUploadedService.getAllChapters();
     }
 
+    @JwtToken
     @GetMapping("/novel/{id}")
     public List<ChapterUploaded> getChapterByNovelId(@PathVariable int id) {
         return chapterUploadedService.getChapterByNid(id);
