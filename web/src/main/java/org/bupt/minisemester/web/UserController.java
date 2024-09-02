@@ -25,7 +25,11 @@ public class UserController {
     public R login(@RequestParam("username") String username, @RequestParam("password") String password) {
         String storedPassword = userService.getPassword(username);
         if (storedPassword != null && storedPassword.equals(password)) {
-            String token = jwtUtil.sign(username, password);  // 使用实例方法而非静态方法
+            String uid = UserService.getUidByUsername(username);
+            if(uid == null) {
+                return R.failure("用户id未找到");
+            }
+            String token = jwtUtil.sign(username, password, uid);  // 使用实例方法而非静态方法
             return R.ok("登录成功", token);
         } else {
             return R.failure("用户名或密码错误");
