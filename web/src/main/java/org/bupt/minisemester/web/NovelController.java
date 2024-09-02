@@ -4,6 +4,7 @@ import jakarta.servlet.http.HttpServletRequest;
 import org.bupt.minisemester.common.jwt.JwtToken;
 import org.bupt.minisemester.common.jwt.JwtUtil;
 import org.bupt.minisemester.common.util.R;
+import org.bupt.minisemester.dao.entity.Novel;
 import org.bupt.minisemester.dao.entity.User;
 import org.bupt.minisemester.service.NovelServiceGlobal;
 import org.bupt.minisemester.service.UserService;
@@ -15,6 +16,7 @@ import java.io.BufferedReader;
 import java.io.InputStreamReader;
 import java.nio.charset.StandardCharsets;
 import java.util.stream.Collectors;
+import java.util.*;
 
 @RestController
 @RequestMapping("/books")
@@ -26,6 +28,10 @@ public class NovelController {
     @Autowired
     private JwtUtil jwtUtil;
 
+    @GetMapping("/{id}")
+    public List<Map<String, String>> getNovel(@PathVariable int id) {
+           return novelService.getBookUploaded(id);
+    }
     @JwtToken
     @PostMapping("/import")
     public R importNovel(@RequestParam("file") MultipartFile file, @RequestParam("status") boolean status, HttpServletRequest request) {
@@ -67,9 +73,14 @@ public class NovelController {
         }
     }
 
+
     @PostMapping("/add")
-    public String addBookUploaded(@RequestParam String title, @RequestParam String desc, @RequestParam String author, @RequestParam String noveltype) {
-        novelService.addBookUploaded(title, desc, author, noveltype);
-        return "Book uploaded successfully!";
+    public R addBookUploaded(@RequestBody Novel novel) {
+        try {
+            novelService.addBookUploaded(novel);
+        } catch (Exception e) {
+            return R.failure(e.getMessage());
+        }
+        return R.ok("小说信息上传成功");
     }
 }
