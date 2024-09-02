@@ -3866,3 +3866,46 @@ Caused by: java.lang.IllegalStateException: Type handler was null on parameter m
 2024-09-02 23:31:39.669 [SpringApplicationShutdownHook] INFO  o.s.o.j.LocalContainerEntityManagerFactoryBean - Closing JPA EntityManagerFactory for persistence unit 'default'
 2024-09-02 23:31:39.671 [SpringApplicationShutdownHook] INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Shutdown initiated...
 2024-09-02 23:31:39.677 [SpringApplicationShutdownHook] INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Shutdown completed.
+2024-09-02 23:52:05.873 [main] INFO  o.bupt.minisemester.WebApplication - Starting WebApplication using Java 17.0.11 with PID 34820 (C:\Users\Administrator\Downloads\111\web\target\classes started by Administrator in C:\Users\Administrator\Downloads\111)
+2024-09-02 23:52:05.874 [main] INFO  o.bupt.minisemester.WebApplication - The following 1 profile is active: "local"
+2024-09-02 23:52:05.900 [main] DEBUG o.s.b.w.s.c.AnnotationConfigServletWebServerApplicationContext - Refreshing org.springframework.boot.web.servlet.context.AnnotationConfigServletWebServerApplicationContext@552518c3
+2024-09-02 23:52:06.276 [main] INFO  o.s.d.r.c.RepositoryConfigurationDelegate - Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+2024-09-02 23:52:06.285 [main] INFO  o.s.d.r.c.RepositoryConfigurationDelegate - Finished Spring Data repository scanning in 4 ms. Found 0 JPA repository interfaces.
+2024-09-02 23:52:06.643 [main] DEBUG o.s.b.w.e.t.TomcatServletWebServerFactory - Code archive: C:\Users\Administrator\.m2\repository\org\springframework\boot\spring-boot\3.3.3\spring-boot-3.3.3.jar
+2024-09-02 23:52:06.643 [main] DEBUG o.s.b.w.e.t.TomcatServletWebServerFactory - Code archive: C:\Users\Administrator\.m2\repository\org\springframework\boot\spring-boot\3.3.3\spring-boot-3.3.3.jar
+2024-09-02 23:52:06.643 [main] DEBUG o.s.b.w.e.t.TomcatServletWebServerFactory - None of the document roots [src/main/webapp, public, static] point to a directory and will be ignored.
+2024-09-02 23:52:06.655 [main] INFO  o.s.b.w.e.tomcat.TomcatWebServer - Tomcat initialized with port 8080 (http)
+2024-09-02 23:52:06.661 [main] INFO  o.a.coyote.http11.Http11NioProtocol - Initializing ProtocolHandler ["http-nio-8080"]
+2024-09-02 23:52:06.663 [main] INFO  o.a.catalina.core.StandardService - Starting service [Tomcat]
+2024-09-02 23:52:06.664 [main] INFO  o.a.catalina.core.StandardEngine - Starting Servlet engine: [Apache Tomcat/10.1.28]
+2024-09-02 23:52:06.703 [main] INFO  o.a.c.c.C.[Tomcat].[localhost].[/] - Initializing Spring embedded WebApplicationContext
+2024-09-02 23:52:06.704 [main] DEBUG o.s.b.w.s.c.ServletWebServerApplicationContext - Published root WebApplicationContext as ServletContext attribute with name [org.springframework.web.context.WebApplicationContext.ROOT]
+2024-09-02 23:52:06.704 [main] INFO  o.s.b.w.s.c.ServletWebServerApplicationContext - Root WebApplicationContext: initialization completed in 804 ms
+2024-09-02 23:52:06.713 [main] DEBUG o.s.b.w.s.ServletContextInitializerBeans - Mapping filters: characterEncodingFilter urls=[/*] order=-2147483648, formContentFilter urls=[/*] order=-9900, requestContextFilter urls=[/*] order=-105
+2024-09-02 23:52:06.713 [main] DEBUG o.s.b.w.s.ServletContextInitializerBeans - Mapping servlets: dispatcherServlet urls=[/]
+2024-09-02 23:52:06.727 [main] DEBUG o.s.b.w.s.f.OrderedRequestContextFilter - Filter 'requestContextFilter' configured for use
+2024-09-02 23:52:06.730 [main] DEBUG o.s.b.w.s.f.OrderedCharacterEncodingFilter - Filter 'characterEncodingFilter' configured for use
+2024-09-02 23:52:06.731 [main] DEBUG o.s.b.w.s.f.OrderedFormContentFilter - Filter 'formContentFilter' configured for use
+2024-09-02 23:52:06.793 [main] INFO  o.h.jpa.internal.util.LogHelper - HHH000204: Processing PersistenceUnitInfo [name: default]
+2024-09-02 23:52:06.828 [main] INFO  org.hibernate.Version - HHH000412: Hibernate ORM core version 6.5.2.Final
+2024-09-02 23:52:06.848 [main] INFO  o.h.c.i.RegionFactoryInitiator - HHH000026: Second-level cache disabled
+2024-09-02 23:52:07.073 [main] INFO  o.s.o.j.p.SpringPersistenceUnitInfo - No LoadTimeWeaver setup: ignoring JPA class transformer
+2024-09-02 23:52:07.091 [main] INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Starting...
+2024-09-02 23:52:07.249 [main] INFO  com.zaxxer.hikari.pool.HikariPool - HikariPool-1 - Added connection com.mysql.cj.jdbc.ConnectionImpl@2cff03cf
+2024-09-02 23:52:07.250 [main] INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Start completed.
+2024-09-02 23:52:07.280 [main] WARN  org.hibernate.orm.deprecation - HHH90000025: MySQLDialect does not need to be specified explicitly using 'hibernate.dialect' (remove the property setting and it will be selected by default)
+2024-09-02 23:52:07.887 [main] INFO  o.h.e.t.j.p.i.JtaPlatformInitiator - HHH000489: No JTA platform available (set 'hibernate.transaction.jta.platform' to enable JTA platform integration)
+2024-09-02 23:52:07.931 [main] INFO  o.s.o.j.LocalContainerEntityManagerFactoryBean - Initialized JPA EntityManagerFactory for persistence unit 'default'
+2024-09-02 23:52:08.006 [main] WARN  c.b.m.core.metadata.TableInfoHelper - This primary key of "cid" is primitive !不建议如此请使用包装类 in Class: "org.bupt.minisemester.dao.entity.ChapterUploaded"
+2024-09-02 23:52:08.429 [main] WARN  o.s.b.a.o.j.JpaBaseConfiguration$JpaWebConfiguration - spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+2024-09-02 23:52:08.490 [main] DEBUG o.s.w.s.m.m.a.RequestMappingHandlerMapping - 17 mappings in 'requestMappingHandlerMapping'
+2024-09-02 23:52:08.537 [main] DEBUG o.s.w.s.h.SimpleUrlHandlerMapping - Patterns [/webjars/**, /**] in 'resourceHandlerMapping'
+2024-09-02 23:52:08.557 [main] DEBUG o.s.w.s.m.m.a.RequestMappingHandlerAdapter - ControllerAdvice beans: 0 @ModelAttribute, 0 @InitBinder, 1 RequestBodyAdvice, 1 ResponseBodyAdvice
+2024-09-02 23:52:08.582 [main] DEBUG o.s.w.s.m.m.a.ExceptionHandlerExceptionResolver - ControllerAdvice beans: 1 @ExceptionHandler, 1 ResponseBodyAdvice
+2024-09-02 23:52:08.675 [main] INFO  o.a.coyote.http11.Http11NioProtocol - Starting ProtocolHandler ["http-nio-8080"]
+2024-09-02 23:52:08.685 [main] INFO  o.s.b.w.e.tomcat.TomcatWebServer - Tomcat started on port 8080 (http) with context path '/'
+2024-09-02 23:52:08.690 [main] INFO  o.bupt.minisemester.WebApplication - Started WebApplication in 3.152 seconds (process running for 3.493)
+2024-09-02 23:56:02.486 [SpringApplicationShutdownHook] DEBUG o.s.b.w.s.c.AnnotationConfigServletWebServerApplicationContext - Closing org.springframework.boot.web.servlet.context.AnnotationConfigServletWebServerApplicationContext@552518c3, started on Mon Sep 02 23:52:05 CST 2024
+2024-09-02 23:56:02.533 [SpringApplicationShutdownHook] INFO  o.s.o.j.LocalContainerEntityManagerFactoryBean - Closing JPA EntityManagerFactory for persistence unit 'default'
+2024-09-02 23:56:02.534 [SpringApplicationShutdownHook] INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Shutdown initiated...
+2024-09-02 23:56:02.538 [SpringApplicationShutdownHook] INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Shutdown completed.
