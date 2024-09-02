@@ -19,11 +19,15 @@ public class ChapterUploadedController {
         return chapterUploadedService.getChapterById(id);
     }
 
-    @GetMapping
+    @GetMapping("/novel")
     public List<ChapterUploaded> getAllChapters() {
         return chapterUploadedService.getAllChapters();
     }
 
+    @GetMapping("/novel/{id}")
+    public List<ChapterUploaded> getChapterByNovelId(@PathVariable int id) {
+        return chapterUploadedService.getChapterByNid(id);
+    }
     @PostMapping
     public void saveChapter(@RequestBody ChapterUploaded chapter) {
         chapterUploadedService.saveChapter(chapter);
@@ -35,7 +39,7 @@ public class ChapterUploadedController {
     }
 
     @DeleteMapping("/{id}")
-    public void deleteChapter(@PathVariable int id) {
+    public void deleteChapter(@PathVariable Integer id) {
         chapterUploadedService.deleteChapter(id);
     }
 }

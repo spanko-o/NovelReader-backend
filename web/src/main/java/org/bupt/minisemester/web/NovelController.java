@@ -7,10 +7,13 @@ import org.bupt.minisemester.service.NovelServiceGlobal;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
+import org.bupt.minisemester.dao.entity.Novel;
 
 import java.io.BufferedReader;
 import java.io.InputStreamReader;
 import java.nio.charset.StandardCharsets;
+import java.util.List;
+import java.util.Map;
 import java.util.stream.Collectors;
 
 @RestController
@@ -19,7 +22,12 @@ public class NovelController {
 
     @Autowired
     private NovelServiceGlobal novelService;
-    
+
+    @GetMapping("/{id}")
+    public List<Map<String, String>> getNovel(@PathVariable int id) {
+           return novelService.getBookUploaded(id);
+    }
+
     @PostMapping("/import")
     public R importNovel(@RequestParam("file") MultipartFile file) {
         try{
@@ -48,8 +56,12 @@ public class NovelController {
     }
 
     @PostMapping("/add")
-    public String addBookUploaded(@RequestParam String title, @RequestParam String desc, @RequestParam String author, @RequestParam String noveltype) {
-        novelService.addBookUploaded(title, desc, author, noveltype);
-        return "Book uploaded successfully!";
+    public R addBookUploaded(@RequestParam String title, @RequestParam String desc, @RequestParam String author, @RequestParam String noveltype) {
+        try{
+            novelService.addBookUploaded(title, desc, author, noveltype);
+        }catch (Exception e){
+            return R.failure(e.getMessage());
+        }
+        return R.ok();
     }
 }

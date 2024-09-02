@@ -9,6 +9,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.util.StringUtils;
 
 import java.util.List;
+import java.util.Map;
 
 @Service
 public class NovelServiceGlobal {
@@ -38,7 +39,7 @@ public class NovelServiceGlobal {
                 ChapterUploaded chapterEntity = new ChapterUploaded();
                 chapterEntity.setTitle(chapter.getTitle());
                 chapterEntity.setContent(chapter.getContent());
-                chapterEntity.setNovel(novel);
+                chapterEntity.setNovelId(novel);
                 chapterUploadedMapper.insertChapter(chapter.getTitle(),chapter.getContent(),novel.getId());
             }
         } catch (Exception e) {
@@ -59,5 +60,9 @@ public class NovelServiceGlobal {
         novel.setAuthor(author);
         novel.setNoveltype(noveltype);
         this.novelMapper.insertBookUploaded(title, description, author, noveltype);
+    }
+
+    public List<Map<String, String>> getBookUploaded(Integer nid) {
+        return this.novelMapper.selectNovelDetails(nid);
     }
 }
