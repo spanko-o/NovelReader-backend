@@ -21,7 +21,8 @@ public class Novel {
 
     @Getter
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)// MyBatis-Plus 注解，设置 id 为自增主键
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @TableId(value = "id", type = IdType.AUTO)
     private Integer id;
 
     @Setter
@@ -52,7 +53,7 @@ public class Novel {
     private boolean status;
 
     @ManyToOne
-    @JoinColumn(name="userid")
+    @JoinColumn(name="user_id")
     private User user;
 
 }

@@ -1,11 +1,9 @@
 package org.bupt.minisemester.dao.mapper;
 
 import com.baomidou.mybatisplus.core.mapper.BaseMapper;
-import org.apache.ibatis.annotations.Insert;
-import org.apache.ibatis.annotations.Mapper;
-import org.apache.ibatis.annotations.Param;
-import org.apache.ibatis.annotations.Select;
+import org.apache.ibatis.annotations.*;
 import org.bupt.minisemester.dao.entity.Novel;
+import org.bupt.minisemester.dao.entity.User;
 
 import java.util.List;
 import java.util.Map;
@@ -28,6 +26,14 @@ public interface NovelMapper extends BaseMapper<Novel> {
     @Select("SELECT title from chapter_uploaded where book_uploaded = #{bid}")
     List<Map<String, String>> selectChapterUploaded(@Param("bid") int bid);
 
-    @Insert("INSERT INTO novel (title, description, author, noveltype) VALUES (#{title}, #{description}, #{author}, #{noveltype})")
-    void insertBookUploaded(@Param("title") String title, @Param("description") String description, @Param("author") String author, @Param("noveltype") String noveltype);
+    @Insert("INSERT INTO novel (title, description, author, noveltype, status, user_id) " +
+            "VALUES (#{title}, #{description}, #{author}, #{noveltype}, #{status}, #{userId})")
+    @Options(useGeneratedKeys = true, keyProperty = "param1.id")
+    void insertBookUploaded(@Param("novel") Novel novel,
+                            @Param("title") String title,
+                            @Param("description") String description,
+                            @Param("author") String author,
+                            @Param("noveltype") String noveltype,
+                            @Param("status") boolean status,
+                            @Param("userId") String userId);
 }

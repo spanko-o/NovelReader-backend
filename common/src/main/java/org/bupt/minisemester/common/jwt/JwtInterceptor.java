@@ -46,6 +46,8 @@ public class JwtInterceptor implements HandlerInterceptor {
                 token = token.substring(7); // 移除 "Bearer " 前缀
 
                 if (jwtUtil.checkSign(token, userService)) {
+                    String userId = jwtUtil.getTokenClaims(token, "uid");
+                    request.setAttribute("userId", userId);
                     return true;
                 } else {
                     response.setStatus(HttpServletResponse.SC_UNAUTHORIZED);

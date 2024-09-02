@@ -32,6 +32,6 @@ public class User {
     @TableField("password")
     private String password;
 
-    @OneToMany(mappedBy = "id")
+    @OneToMany(mappedBy = "user")
     private List<Novel> star_novels;
 }

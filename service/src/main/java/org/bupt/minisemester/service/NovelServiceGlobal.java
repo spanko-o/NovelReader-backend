@@ -1,5 +1,7 @@
 package org.bupt.minisemester.service;
 
+import jakarta.persistence.EntityManager;
+import jakarta.persistence.PersistenceContext;
 import jakarta.transaction.Transactional;
 import org.bupt.minisemester.dao.entity.*;
 import org.bupt.minisemester.dao.mapper.ChapterUploadedMapper;
@@ -20,15 +22,15 @@ public class NovelServiceGlobal {
     private ChapterUploadedMapper chapterUploadedMapper;
 
     @Transactional
-    public void importNovel(String novelTitle, String content) {
+    public void importNovel(String novelTitle, String content, User user, Boolean status) {
         try {
             System.out.println("开始导入小说：" + novelTitle);
 
             Novel novel = new Novel();
             novel.setTitle(novelTitle);
-            novelMapper.insert(novel);
-
-            System.out.println("小说" + novelTitle + "已保存到数据库");
+            novel.setUser(user);
+            novel.setStatus(status);
+            novelMapper.insertBookUploaded(novel, novel.getTitle(), novel.getDescription(), novel.getAuthor(), novel.getNoveltype(), novel.isStatus(), user.getUserId());
 
             NovelSplitter splitter = new NovelSplitter(content);
             List<NovelSplitter.Chapter> chapters = splitter.split();
@@ -39,7 +41,7 @@ public class NovelServiceGlobal {
                 chapterEntity.setTitle(chapter.getTitle());
                 chapterEntity.setContent(chapter.getContent());
                 chapterEntity.setNovel(novel);
-                chapterUploadedMapper.insertChapter(chapter.getTitle(),chapter.getContent(),novel.getId());
+                chapterUploadedMapper.insertChapter(chapter.getTitle(), chapter.getContent(), novel.getId());
             }
         } catch (Exception e) {
             e.printStackTrace();
@@ -58,6 +60,6 @@ public class NovelServiceGlobal {
         novel.setDescription(description);
         novel.setAuthor(author);
         novel.setNoveltype(noveltype);
-        this.novelMapper.insertBookUploaded(title, description, author, noveltype);
+        this.novelMapper.insert(novel);
     }
 }
