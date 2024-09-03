@@ -8,6 +8,8 @@ import org.bupt.minisemester.dao.DTO.ChapterDTO;
 import org.bupt.minisemester.dao.entity.ChapterUploaded;
 import org.bupt.minisemester.dao.entity.Novel;
 import org.bupt.minisemester.dao.entity.User;
+import org.bupt.minisemester.dao.mapper.NovelMapper;
+import org.bupt.minisemester.dao.mapper.userMapper;
 import org.bupt.minisemester.service.NovelServiceGlobal;
 import org.bupt.minisemester.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -26,13 +28,19 @@ public class NovelController {
 
     @Autowired
     private NovelServiceGlobal novelService;
+
+    @Autowired
+    private userMapper userMapper;
+
     private boolean status;
     @Autowired
     private JwtUtil jwtUtil;
+    @Autowired
+    private NovelMapper novelMapper;
 
     @GetMapping("/{id}")
     public List<Map<String, String>> getNovel(@PathVariable int id) {
-           return novelService.getBookUploaded(id);
+        return novelService.getBookUploaded(id);
     }
 
     @JwtToken
@@ -57,7 +65,7 @@ public class NovelController {
             String token = request.getHeader("Authorization");
             token = token.substring(7);
 
-            String userId = jwtUtil.getTokenClaims(token,"uid");
+            String userId = jwtUtil.getTokenClaims(token, "uid");
             if (userId == null || userId.isEmpty()) {
                 return R.failure("无法获取用户信息");
             }
@@ -83,6 +91,48 @@ public class NovelController {
             return R.ok(chapter);
         } else {
             return R.failure("Chapter not found");
+        }
+    }
+
+    @GetMapping("/star")
+    public R starNovel(@RequestParam("book_id") Integer book_id, HttpServletRequest request) {
+        try {
+            //获取用户
+            String token = request.getHeader("Authorization");
+            token = token.substring(7);
+
+            String userId = jwtUtil.getTokenClaims(token, "uid");
+            if (userId == null || userId.isEmpty()) {
+                return R.failure("无法获取用户信息");
+            }
+
+            User user = UserService.getUserByUid(userId);
+            if (user == null) {
+                return R.failure("该用户不存在");
+            }
+
+            Novel novel = novelMapper.findById(book_id);
+            if (novel == null) {
+                return R.failure("该书籍不存在");
+            }
+
+            if (user.getStar_novels() == null) {
+                user.setStar_novels(new ArrayList<>());
+            }
+            System.out.println(user.getStar_novels().contains(novel.getId()));
+
+            if (!user.getStar_novels().contains(novel.getId())) {
+                user.addStarNovel(novel);
+                for (Integer novelId : user.getStar_novels()) {
+                    userMapper.addStarNovel(user.getUserId(), novelId);
+                }
+                return R.ok("书籍添加成功");
+            } else {
+                return R.failure("该书籍已经被收藏");
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+            return R.failure(e.getMessage());
         }
     }
 }

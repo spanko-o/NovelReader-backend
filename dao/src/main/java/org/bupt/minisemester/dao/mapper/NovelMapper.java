@@ -36,4 +36,7 @@ public interface NovelMapper extends BaseMapper<Novel> {
                             @Param("noveltype") String noveltype,
                             @Param("status") boolean status,
                             @Param("userId") String userId);
+
+    @Select("SELECT * FROM novel WHERE id = #{id}")
+    Novel findById(@Param("id") Integer id);
 }
