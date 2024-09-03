@@ -135,4 +135,8 @@ public class NovelController {
             return R.failure(e.getMessage());
         }
     }
+    @GetMapping("")
+    public List<Novel> getAllNovels() {
+        return novelService.findAllNovels();
+    }
 }

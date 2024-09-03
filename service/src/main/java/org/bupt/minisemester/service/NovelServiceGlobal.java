@@ -65,4 +65,8 @@ public class NovelServiceGlobal {
     public List<Map<String, String>> getBookUploaded(Integer nid) {
         return this.novelMapper.selectNovelDetails(nid);
     }
+
+    public List<Novel> findAllNovels() {
+        return this.novelMapper.findAll();
+    }
 }
