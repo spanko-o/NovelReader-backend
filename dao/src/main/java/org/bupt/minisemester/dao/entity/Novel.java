@@ -46,7 +46,7 @@ public class Novel {
     @TableField("picture") // 对应数据库中的字段 picture
     private String picture;
 
-    @OneToMany(mappedBy = "novel")
+    @OneToMany(mappedBy = "novelId")
     private List<ChapterUploaded> chapterList;
 
     @TableField("status") // 说明是官方上传的还是用户上传的：1是官方上传的，0为用户上传的

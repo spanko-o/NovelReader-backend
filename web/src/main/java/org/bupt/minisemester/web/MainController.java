@@ -41,7 +41,7 @@ public class MainController {
                 .build();
     }
 
-
+    @JwtToken
     @GetMapping("/Main")
     public R NovelList(@RequestParam(value = "page", defaultValue = "1") int page) {
         try {
@@ -70,7 +70,7 @@ public class MainController {
         }
     }
 
-
+    @JwtToken
     @GetMapping("/search")
     public R search(@RequestParam("query") String query) {
         try{
