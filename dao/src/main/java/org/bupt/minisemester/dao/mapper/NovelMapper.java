@@ -2,6 +2,7 @@ package org.bupt.minisemester.dao.mapper;
 
 import com.baomidou.mybatisplus.core.mapper.BaseMapper;
 import org.apache.ibatis.annotations.*;
+import org.bupt.minisemester.dao.DTO.NovelDTO;
 import org.bupt.minisemester.dao.entity.Novel;
 import org.bupt.minisemester.dao.entity.User;
 
@@ -41,5 +42,5 @@ public interface NovelMapper extends BaseMapper<Novel> {
     Novel findById(@Param("id") Integer id);
 
     @Select("select id,title,picture,status from novel")
-    List<Novel> findAll();
+    List<NovelDTO> findAll();
 }

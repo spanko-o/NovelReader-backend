@@ -5,6 +5,7 @@ import org.bupt.minisemester.common.jwt.JwtToken;
 import org.bupt.minisemester.common.jwt.JwtUtil;
 import org.bupt.minisemester.common.util.R;
 import org.bupt.minisemester.dao.DTO.ChapterDTO;
+import org.bupt.minisemester.dao.DTO.NovelDTO;
 import org.bupt.minisemester.dao.entity.ChapterUploaded;
 import org.bupt.minisemester.dao.entity.Novel;
 import org.bupt.minisemester.dao.entity.User;
@@ -135,8 +136,13 @@ public class NovelController {
             return R.failure(e.getMessage());
         }
     }
+   // @JwtToken
     @GetMapping("")
-    public List<Novel> getAllNovels() {
-        return novelService.findAllNovels();
+    public R getAllNovels() {
+        try {
+            return R.ok("获取小说列表成功！",novelService.findAllNovels());
+        }catch (Exception e) {
+            return R.failure(e.getMessage());
+        }
     }
 }

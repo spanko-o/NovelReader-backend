@@ -2,6 +2,7 @@ package org.bupt.minisemester.service;
 
 import jakarta.transaction.Transactional;
 import org.bupt.minisemester.dao.DTO.ChapterDTO;
+import org.bupt.minisemester.dao.DTO.NovelDTO;
 import org.bupt.minisemester.dao.entity.*;
 import org.bupt.minisemester.dao.mapper.ChapterUploadedMapper;
 import org.bupt.minisemester.dao.mapper.NovelMapper;
@@ -66,7 +67,7 @@ public class NovelServiceGlobal {
         return this.novelMapper.selectNovelDetails(nid);
     }
 
-    public List<Novel> findAllNovels() {
+    public List<NovelDTO> findAllNovels() {
         return this.novelMapper.findAll();
     }
 }
