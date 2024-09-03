@@ -1,14 +1,12 @@
 package org.bupt.minisemester.service;
 
-import jakarta.persistence.EntityManager;
-import jakarta.persistence.PersistenceContext;
 import jakarta.transaction.Transactional;
+import org.bupt.minisemester.dao.DTO.ChapterDTO;
 import org.bupt.minisemester.dao.entity.*;
 import org.bupt.minisemester.dao.mapper.ChapterUploadedMapper;
 import org.bupt.minisemester.dao.mapper.NovelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-import org.springframework.util.StringUtils;
 
 import java.util.List;
 import java.util.Map;
@@ -49,6 +47,10 @@ public class NovelServiceGlobal {
             throw new RuntimeException(e);
         }
 
+    }
+
+    public ChapterDTO getChapter(Integer novelId, Integer chapterId) {
+        return chapterUploadedMapper.findChapterByBookIdAndChapterID(novelId, chapterId);
     }
 
     public List<Map<String, String>> getBookUploaded(Integer nid) {

@@ -4,6 +4,8 @@ import jakarta.servlet.http.HttpServletRequest;
 import org.bupt.minisemester.common.jwt.JwtToken;
 import org.bupt.minisemester.common.jwt.JwtUtil;
 import org.bupt.minisemester.common.util.R;
+import org.bupt.minisemester.dao.DTO.ChapterDTO;
+import org.bupt.minisemester.dao.entity.ChapterUploaded;
 import org.bupt.minisemester.dao.entity.Novel;
 import org.bupt.minisemester.dao.entity.User;
 import org.bupt.minisemester.service.NovelServiceGlobal;
@@ -32,6 +34,7 @@ public class NovelController {
     public List<Map<String, String>> getNovel(@PathVariable int id) {
            return novelService.getBookUploaded(id);
     }
+
     @JwtToken
     @PostMapping("/import")
     public R importNovel(@RequestParam("file") MultipartFile file, @RequestParam("status") boolean status, HttpServletRequest request) {
@@ -70,6 +73,16 @@ public class NovelController {
             return R.ok("小说导入成功");
         } catch (Exception e) {
             return R.failure(e.getMessage());
+        }
+    }
+
+    @GetMapping("/read")
+    public R getChapterContent(@RequestParam("book_id") Integer book_id, @RequestParam("chapter_id") Integer chapter_id) {
+        ChapterDTO chapter = novelService.getChapter(book_id, chapter_id);
+        if (chapter != null) {
+            return R.ok(chapter);
+        } else {
+            return R.failure("Chapter not found");
         }
     }
 }
