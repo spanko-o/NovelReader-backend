@@ -9,7 +9,6 @@ import jakarta.validation.constraints.NotEmpty;
 import lombok.Data;
 import lombok.Getter;
 import lombok.Setter;
-import org.hibernate.query.UnknownNamedQueryException;
 
 import java.util.List;
 
