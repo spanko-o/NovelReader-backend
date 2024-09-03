@@ -22,6 +22,7 @@ import java.io.InputStreamReader;
 import java.nio.charset.StandardCharsets;
 import java.util.stream.Collectors;
 import java.util.*;
+import java.lang.*;
 
 @RestController
 @RequestMapping("/books")
@@ -136,7 +137,7 @@ public class NovelController {
             return R.failure(e.getMessage());
         }
     }
-   // @JwtToken
+    @JwtToken
     @GetMapping("")
     public R getAllNovels() {
         try {
@@ -144,5 +145,25 @@ public class NovelController {
         }catch (Exception e) {
             return R.failure(e.getMessage());
         }
+    }
+
+    @JwtToken
+    @GetMapping("/starred_novels")
+    public R getStarredNovels(HttpServletRequest request) {
+        String token = request.getHeader("Authorization");
+        token = token.substring(7);
+
+        String userId = jwtUtil.getTokenClaims(token, "uid");
+        System.out.println(userId);
+        if (userId == null || userId.isEmpty()) {
+            return R.failure("无法获取用户信息");
+        }
+
+        User user = UserService.getUserByUid(userId);
+        if (user == null) {
+            return R.failure("该用户不存在");
+        }
+
+        return R.ok("ok",novelService.findStarredNovels(userId));
     }
 }

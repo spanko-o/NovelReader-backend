@@ -70,4 +70,11 @@ public class NovelServiceGlobal {
     public List<NovelDTO> findAllNovels() {
         return this.novelMapper.findAll();
     }
+
+    public List<NovelDTO> findStarredNovels(String uid) {
+        List<NovelDTO> BookShelf = this.userMapper.findNovelByUid(uid);
+        List<NovelDTO> temp = this.userMapper.findUploadedNovel(uid);
+        BookShelf.addAll(temp);
+        return BookShelf;
+    }
 }

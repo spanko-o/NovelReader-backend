@@ -41,6 +41,6 @@ public interface NovelMapper extends BaseMapper<Novel> {
     @Select("SELECT * FROM novel WHERE id = #{id}")
     Novel findById(@Param("id") Integer id);
 
-    @Select("select id,title,picture,status from novel")
+    @Select("select id,title,picture,status from novel where user_id is NOT NULL")
     List<NovelDTO> findAll();
 }

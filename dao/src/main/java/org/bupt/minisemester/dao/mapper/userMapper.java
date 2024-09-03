@@ -1,7 +1,10 @@
 package org.bupt.minisemester.dao.mapper;
 
 import org.apache.ibatis.annotations.*;
+import org.bupt.minisemester.dao.DTO.NovelDTO;
 import org.bupt.minisemester.dao.entity.User;
+
+import java.util.List;
 
 @Mapper
 public interface userMapper {
@@ -19,4 +22,10 @@ public interface userMapper {
 
     @Update("INSERT INTO user_star_novels (user_id, novel_id) VALUES (#{userId}, #{novelId})")
     void addStarNovel(@Param("userId") String userId, @Param("novelId") Integer novelId);
+
+    @Select("select id,title,picture,status from user_star_novels u join novel n on u.novel_id = n.id where u.user_id = #{uid}")
+    List<NovelDTO> findNovelByUid(@Param("uid") String uid);
+
+    @Select("select id,title,picture,status from novel where user_id = #{uid}")
+    List<NovelDTO> findUploadedNovel(@Param("uid") String uid);
 }
