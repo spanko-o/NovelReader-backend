@@ -72,15 +72,4 @@ public class NovelController {
             return R.failure(e.getMessage());
         }
     }
-
-
-    @PostMapping("/add")
-    public R addBookUploaded(@RequestBody Novel novel) {
-        try {
-            novelService.addBookUploaded(novel);
-        } catch (Exception e) {
-            return R.failure(e.getMessage());
-        }
-        return R.ok("小说信息上传成功");
-    }
 }

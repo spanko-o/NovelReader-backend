@@ -31,7 +31,7 @@ public class NovelServiceGlobal {
             novel.setTitle(novelTitle);
             novel.setUser(user);
             novel.setStatus(status);
-            novelMapper.insertBookUploaded(novel);
+            novelMapper.insertBookUploaded(novel, novel.getTitle(), novel.getDescription(), novel.getAuthor(), novel.getNoveltype(), novel.isStatus(), user.getUserId());
 
             NovelSplitter splitter = new NovelSplitter(content);
             List<NovelSplitter.Chapter> chapters = splitter.split();
@@ -50,15 +50,6 @@ public class NovelServiceGlobal {
         }
 
     }
-
-    public void addBookUploaded(Novel novel) {
-    if (!StringUtils.hasText(novel.getTitle())) {
-        throw new IllegalArgumentException("标题不能为空");
-    }
-
-    this.novelMapper.insertBookUploaded(novel);
-}
-
 
     public List<Map<String, String>> getBookUploaded(Integer nid) {
         return this.novelMapper.selectNovelDetails(nid);

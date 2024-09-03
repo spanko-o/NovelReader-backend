@@ -15,19 +15,19 @@ public class ChapterUploadedController {
     @Autowired
     private ChapterUploadedService chapterUploadedService;
 
-    //@JwtToken
+    @JwtToken
     @GetMapping("/{id}")
     public ChapterUploaded getChapterById(@PathVariable int id) {
         return chapterUploadedService.getChapterById(id);
     }
 
-    //@JwtToken
+    @JwtToken
     @GetMapping("/novel")
     public List<ChapterUploaded> getAllChapters() {
         return chapterUploadedService.getAllChapters();
     }
 
-    //@JwtToken
+    @JwtToken
     @GetMapping("/novel/{id}")
     public List<ChapterUploaded> getChapterByNovelId(@PathVariable int id) {
         return chapterUploadedService.getChapterByNid(id);
