@@ -1,6 +1,7 @@
 package org.bupt.minisemester.web;
 
 import org.bupt.minisemester.common.jwt.JwtToken;
+import org.bupt.minisemester.common.util.R;
 import org.bupt.minisemester.dao.entity.ChapterUploaded;
 import org.bupt.minisemester.service.ChapterUploadedService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -29,8 +30,8 @@ public class ChapterUploadedController {
 
     @JwtToken
     @GetMapping("/novel/{id}")
-    public List<ChapterUploaded> getChapterByNovelId(@PathVariable int id) {
-        return chapterUploadedService.getChapterByNid(id);
+    public R getChapterByNovelId(@PathVariable int id) {
+        return R.ok(chapterUploadedService.getChapterByNid(id));
     }
     @PostMapping
     public void saveChapter(@RequestBody ChapterUploaded chapter) {

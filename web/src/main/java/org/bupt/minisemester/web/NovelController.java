@@ -5,8 +5,7 @@ import org.bupt.minisemester.common.jwt.JwtToken;
 import org.bupt.minisemester.common.jwt.JwtUtil;
 import org.bupt.minisemester.common.util.R;
 import org.bupt.minisemester.dao.DTO.ChapterDTO;
-import org.bupt.minisemester.dao.DTO.NovelDTO;
-import org.bupt.minisemester.dao.entity.ChapterUploaded;
+
 import org.bupt.minisemester.dao.entity.Novel;
 import org.bupt.minisemester.dao.entity.User;
 import org.bupt.minisemester.dao.mapper.NovelMapper;
@@ -40,8 +39,8 @@ public class NovelController {
     private NovelMapper novelMapper;
 
     @GetMapping("/{id}")
-    public List<Map<String, String>> getNovel(@PathVariable int id) {
-        return novelService.getBookUploaded(id);
+    public R getNovel(@PathVariable int id) {
+        return R.ok(novelService.getBookUploaded(id));
     }
 
     @JwtToken
