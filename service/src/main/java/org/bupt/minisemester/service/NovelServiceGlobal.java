@@ -5,6 +5,7 @@ import org.bupt.minisemester.dao.DTO.ChapterDTO;
 import org.bupt.minisemester.dao.entity.*;
 import org.bupt.minisemester.dao.mapper.ChapterUploadedMapper;
 import org.bupt.minisemester.dao.mapper.NovelMapper;
+import org.bupt.minisemester.dao.mapper.userMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -20,6 +21,9 @@ public class NovelServiceGlobal {
     @Autowired
     private ChapterUploadedMapper chapterUploadedMapper;
 
+    @Autowired
+    private userMapper userMapper;
+
     @Transactional
     public void importNovel(String novelTitle, String content, User user, Boolean status) {
         try {
@@ -30,6 +34,11 @@ public class NovelServiceGlobal {
             novel.setUser(user);
             novel.setStatus(status);
             novelMapper.insertBookUploaded(novel, novel.getTitle(), novel.getDescription(), novel.getAuthor(), novel.getNoveltype(), novel.isStatus(), user.getUserId());
+
+            user.addStarNovel(novel);
+            for (Integer novelId : user.getStar_novels()) {
+                userMapper.addStarNovel(user.getUserId(), novelId);
+            }
 
             NovelSplitter splitter = new NovelSplitter(content);
             List<NovelSplitter.Chapter> chapters = splitter.split();

@@ -5,13 +5,11 @@ import com.baomidou.mybatisplus.annotation.IdType;
 import com.baomidou.mybatisplus.annotation.TableId;
 import com.baomidou.mybatisplus.annotation.TableName;
 import com.baomidou.mybatisplus.annotation.TableField;
-import jakarta.persistence.Entity;
-import jakarta.persistence.Id;
-import jakarta.persistence.OneToMany;
-import jakarta.persistence.Table;
+import jakarta.persistence.*;
 import jakarta.validation.constraints.NotEmpty;
 import lombok.Data;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.UUID;
 
@@ -32,6 +30,15 @@ public class User {
     @TableField("password")
     private String password;
 
-    @OneToMany(mappedBy = "user")
-    private List<Novel> star_novels;
+    @ElementCollection
+    @CollectionTable(name = "user_star_novels", joinColumns = @JoinColumn(name = "user_id"))
+    @Column(name = "novel_id")
+    private List<Integer> star_novels = new ArrayList<>();
+
+    public void addStarNovel(Novel novel) {
+        if(this.star_novels == null) {
+            this.star_novels = new ArrayList<>();
+        }
+        this.star_novels.add(novel.getId());
+    }
 }

@@ -1,9 +1,6 @@
 package org.bupt.minisemester.dao.mapper;
 
-import org.apache.ibatis.annotations.Insert;
-import org.apache.ibatis.annotations.Mapper;
-import org.apache.ibatis.annotations.Param;
-import org.apache.ibatis.annotations.Select;
+import org.apache.ibatis.annotations.*;
 import org.bupt.minisemester.dao.entity.User;
 
 @Mapper
@@ -19,4 +16,7 @@ public interface userMapper {
 
     @Select("SELECT user_id FROM user WHERE username = #{username}")
     String findUidByUsername(String username);
+
+    @Update("INSERT INTO user_star_novels (user_id, novel_id) VALUES (#{userId}, #{novelId})")
+    void addStarNovel(@Param("userId") String userId, @Param("novelId") Integer novelId);
 }
