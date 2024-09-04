@@ -168,12 +168,21 @@ public class NovelController {
     }
     @JwtToken
     @PostMapping("/addinfo")
-    public R addBookUploaded(@RequestBody Novel novel) {
+    public R addBookUploaded(@RequestBody Novel novel,HttpServletRequest request) {
+        String token = request.getHeader("Authorization");
+        token = token.substring(7);
+
+        String userId = jwtUtil.getTokenClaims(token, "uid");
+        System.out.println(userId);
+        if (userId == null || userId.isEmpty()) {
+            return R.failure("无法获取用户信息");
+        }
+
         try {
-            novelService.addBookUploaded(novel);
+            novelService.addBookUploaded(novel,userId);
         } catch (Exception e) {
             return R.failure(e.getMessage());
         }
-        return R.ok("小说信息上传成功");
+        return R.ok("小说信息修改成功");
     }
 }
