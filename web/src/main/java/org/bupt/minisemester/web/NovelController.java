@@ -48,7 +48,7 @@ public class NovelController {
     @PostMapping("/import")
     public R importNovel(@RequestParam("file") MultipartFile file, @RequestParam("status") String status, HttpServletRequest request) {
         try {
-            boolean status_=Boolean.parseBoolean(status);
+            boolean status_ = Boolean.parseBoolean(status);
             System.out.println("接收到文件：" + file.getOriginalFilename());
             //以文件名作为title
             String title = file.getOriginalFilename();
@@ -142,8 +142,8 @@ public class NovelController {
     @GetMapping("")
     public R getAllNovels() {
         try {
-            return R.ok("获取小说列表成功！",novelService.findAllNovels());
-        }catch (Exception e) {
+            return R.ok("获取小说列表成功！", novelService.findAllNovels());
+        } catch (Exception e) {
             return R.failure(e.getMessage());
         }
     }
@@ -165,25 +165,46 @@ public class NovelController {
             return R.failure("该用户不存在");
         }
 
-        return R.ok("ok",novelService.findStarredNovels(userId));
+        return R.ok("ok", novelService.findStarredNovels(userId));
     }
+
     @JwtToken
     @PostMapping("/addinfo")
-    public R addBookUploaded(@RequestBody Novel novel,HttpServletRequest request) {
-        String token = request.getHeader("Authorization");
-        token = token.substring(7);
-
-        String userId = jwtUtil.getTokenClaims(token, "uid");
-        System.out.println(userId);
-        if (userId == null || userId.isEmpty()) {
-            return R.failure("无法获取用户信息");
-        }
-
+    public R addBookUploaded(@RequestParam("id") Integer id,
+                             @RequestParam(value = "author",required = false) String author,
+                             @RequestParam(value = "title",required = false) String title,
+                             @RequestParam(value = "description",required = false) String description,
+                             @RequestParam(value = "novelType",required = false) String novelType,
+                             @RequestParam(value = "picture",required = false) String picture) {
         try {
-            novelService.addBookUploaded(novel,userId);
+            Novel novel = novelMapper.findById(id);
+            if (novel == null) {
+                return R.failure("书籍不存在");
+            }
+            System.out.println(novel);
+
+            if (title != null) {
+                novel.setTitle(title);
+            }
+            if (author != null) {
+                novel.setAuthor(author);
+            }
+            if (novelType != null) {
+                novel.setNoveltype(novelType);
+            }
+            if (description != null) {
+                novel.setDescription(description);
+            }
+            if (picture != null) {
+                novel.setPicture(picture);
+            }
+
+            novelMapper.updateBookinfo(novel);
+            return R.ok("书籍更新成功");
         } catch (Exception e) {
+            e.printStackTrace();
             return R.failure(e.getMessage());
         }
-        return R.ok("小说信息修改成功");
+
     }
 }
