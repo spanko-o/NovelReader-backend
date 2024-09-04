@@ -15,13 +15,13 @@ public interface ChapterUploadedMapper extends BaseMapper<ChapterUploaded> {
     @Select("select COUNT(*) from novel where id = #{bid}")
     int countByBookId(int bid);
 
-    @Insert("INSERT INTO chapter_uploaded (title, content, novel_id) VALUES (#{title}, #{content}, #{novelId})")
-    void insertChapter(@Param("title") String title, @Param("content") String content, @Param("novelId") Integer novelId);
+    @Insert("INSERT INTO chapter_uploaded (title, content, novel_id, relative_id) VALUES (#{title}, #{content}, #{novelId},#{relativeId})")
+    void insertChapter(@Param("title") String title, @Param("content") String content, @Param("novelId") Integer novelId, @Param("relativeId") Integer relativeId);
 
 
-    @Select("SELECT cid,title FROM chapter_uploaded where novel_id = #{nid}")
+    @Select("SELECT relative_id ,title FROM chapter_uploaded where novel_id = #{nid}")
     List<ChapterUploaded> selectChapter(@Param("nid") Integer nid);
 
-    @Select("SELECT title, content FROM chapter_uploaded WHERE novel_id = #{bookId} AND cid = #{chapterId}")
-    ChapterDTO findChapterByBookIdAndChapterID(@Param("bookId") Integer bookId, @Param("chapterId") Integer chapterId);
+    @Select("SELECT title, content FROM chapter_uploaded WHERE novel_id = #{bookId} AND relative_id = #{relativeId}")
+    ChapterDTO findChapterByBookIdAndRelativeID(@Param("bookId") Integer bookId, @Param("relativeId") Integer relativeId);
 }

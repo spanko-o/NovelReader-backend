@@ -33,6 +33,8 @@ public class ChapterUploadedController {
     public R getChapterByNovelId(@PathVariable int id) {
         return R.ok(chapterUploadedService.getChapterByNid(id));
     }
+
+
     @PostMapping
     public void saveChapter(@RequestBody ChapterUploaded chapter) {
         chapterUploadedService.saveChapter(chapter);
