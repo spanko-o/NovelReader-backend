@@ -46,8 +46,9 @@ public class NovelController {
 
     @JwtToken
     @PostMapping("/import")
-    public R importNovel(@RequestParam("file") MultipartFile file, @RequestParam("status") boolean status, HttpServletRequest request) {
+    public R importNovel(@RequestParam("file") MultipartFile file, @RequestParam("status") String status, HttpServletRequest request) {
         try {
+            boolean status_=Boolean.parseBoolean(status);
             System.out.println("接收到文件：" + file.getOriginalFilename());
             //以文件名作为title
             String title = file.getOriginalFilename();
@@ -77,7 +78,7 @@ public class NovelController {
             }
 
             System.out.println("开始导入小说：" + title);
-            novelService.importNovel(title, content, user, status);
+            novelService.importNovel(title, content, user, status_);
             System.out.println("小说导入成功");
             return R.ok("小说导入成功");
         } catch (Exception e) {
@@ -164,5 +165,15 @@ public class NovelController {
         }
 
         return R.ok("ok",novelService.findStarredNovels(userId));
+    }
+    @JwtToken
+    @PostMapping("/addinfo")
+    public R addBookUploaded(@RequestBody Novel novel) {
+        try {
+            novelService.addBookUploaded(novel);
+        } catch (Exception e) {
+            return R.failure(e.getMessage());
+        }
+        return R.ok("小说信息上传成功");
     }
 }

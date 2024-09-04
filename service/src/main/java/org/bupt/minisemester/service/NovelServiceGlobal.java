@@ -9,9 +9,11 @@ import org.bupt.minisemester.dao.mapper.NovelMapper;
 import org.bupt.minisemester.dao.mapper.userMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.util.StringUtils;
 
 import java.util.List;
 import java.util.Map;
+
 
 @Service
 public class NovelServiceGlobal {
@@ -76,5 +78,12 @@ public class NovelServiceGlobal {
         List<NovelDTO> temp = this.userMapper.findUploadedNovel(uid);
         BookShelf.addAll(temp);
         return BookShelf;
+    }
+    public void addBookUploaded(Novel novel) {
+        if (!StringUtils.hasText(novel.getTitle())) {
+            throw new IllegalArgumentException("标题不能为空");
+        }
+
+        this.novelMapper.insertBookUploaded(novel);
     }
 }

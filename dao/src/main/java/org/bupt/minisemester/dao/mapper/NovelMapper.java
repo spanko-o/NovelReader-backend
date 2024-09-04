@@ -43,4 +43,7 @@ public interface NovelMapper extends BaseMapper<Novel> {
 
     @Select("select id,title,picture,status from novel where user_id is NOT NULL")
     List<NovelDTO> findAll();
+
+    @Insert("INSERT INTO novel (title, description, author, noveltype, status,user_id) VALUES (#{title}, #{description}, #{author}, #{noveltype}, 1,#{user.userId})")
+    void insertBookUploaded(Novel novel);
 }
