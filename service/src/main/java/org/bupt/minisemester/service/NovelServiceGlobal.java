@@ -79,11 +79,11 @@ public class NovelServiceGlobal {
         BookShelf.addAll(temp);
         return BookShelf;
     }
-    public void addBookUploaded(Novel novel) {
+    public void addBookUploaded(Novel novel,String uid) {
         if (!StringUtils.hasText(novel.getTitle())) {
             throw new IllegalArgumentException("标题不能为空");
         }
 
-        this.novelMapper.insertBookUploaded(novel);
+        this.novelMapper.updateBookinfo(novel,uid);
     }
 }
