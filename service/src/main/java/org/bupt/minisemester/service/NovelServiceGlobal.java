@@ -47,12 +47,16 @@ public class NovelServiceGlobal {
             List<NovelSplitter.Chapter> chapters = splitter.split();
             System.out.println("小说已分割为" + chapters.size() + "个章节");
 
+            Integer relativeId = 1;
+
             for (NovelSplitter.Chapter chapter : chapters) {
                 ChapterUploaded chapterEntity = new ChapterUploaded();
                 chapterEntity.setTitle(chapter.getTitle());
                 chapterEntity.setContent(chapter.getContent());
                 chapterEntity.setNovelId(novel);
-                chapterUploadedMapper.insertChapter(chapter.getTitle(), chapter.getContent(), novel.getId());
+                chapterEntity.setRelativeId(relativeId);
+                chapterUploadedMapper.insertChapter(chapter.getTitle(), chapter.getContent(), novel.getId(),relativeId);
+                relativeId++;
             }
         } catch (Exception e) {
             e.printStackTrace();
@@ -61,8 +65,8 @@ public class NovelServiceGlobal {
 
     }
 
-    public ChapterDTO getChapter(Integer novelId, Integer chapterId) {
-        return chapterUploadedMapper.findChapterByBookIdAndChapterID(novelId, chapterId);
+    public ChapterDTO getChapter(Integer novelId, Integer relativeId) {
+        return chapterUploadedMapper.findChapterByBookIdAndRelativeID(novelId, relativeId);
     }
 
     public List<Map<String, String>> getBookUploaded(Integer nid) {

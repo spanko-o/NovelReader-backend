@@ -87,8 +87,8 @@ public class NovelController {
     }
 
     @GetMapping("/read")
-    public R getChapterContent(@RequestParam("book_id") Integer book_id, @RequestParam("chapter_id") Integer chapter_id) {
-        ChapterDTO chapter = novelService.getChapter(book_id, chapter_id);
+    public R getChapterContent(@RequestParam("book_id") Integer book_id, @RequestParam("relativeId") Integer relativeId) {
+        ChapterDTO chapter = novelService.getChapter(book_id, relativeId);
         if (chapter != null) {
             return R.ok(chapter);
         } else {
@@ -137,6 +137,7 @@ public class NovelController {
             return R.failure(e.getMessage());
         }
     }
+
     @JwtToken
     @GetMapping("")
     public R getAllNovels() {

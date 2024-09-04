@@ -24,6 +24,11 @@ public class ChapterUploaded implements Serializable {
 
     @Getter
     @Setter
+    @TableField("relativeId")
+    private Integer relativeId;
+
+    @Getter
+    @Setter
     @TableField("title")
     private String title;
 
