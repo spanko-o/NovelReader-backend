@@ -44,6 +44,6 @@ public interface NovelMapper extends BaseMapper<Novel> {
     @Select("select id,title,picture,status from novel where user_id is NOT NULL")
     List<NovelDTO> findAll();
 
-    @Update("UPDATE novel SET title = #{title}, description = #{description}, author = #{author}, noveltype = #{noveltype}, status = 1 WHERE user_id = #{uid};")
-    void updateBookinfo(Novel novel,String uid);
+    @Update("UPDATE novel SET title = #{title}, description = #{description}, author = #{author}, noveltype = #{noveltype} WHERE id = #{id}")
+    void updateBookinfo(Novel novel);
 }
