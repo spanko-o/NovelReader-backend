@@ -36,7 +36,7 @@ public class NovelSplitter {
 
         try {
             // 定义正则表达式模式，匹配“第几回”或“第几章”，其中“几”可以是长度不超过4个汉字的任意字符
-            Pattern pattern = Pattern.compile("(第.{1,4}?[回章])");
+            Pattern pattern = Pattern.compile("(第.{1,4}?[回章]\\s.*?\\n)");
             Matcher matcher = pattern.matcher(content);
 
             int start = 0;
