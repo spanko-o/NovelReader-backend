@@ -96,6 +96,34 @@ public class NovelController {
         }
     }
 
+    @GetMapping("/cancel_star")
+    public R cancelStar(@RequestParam("book_id") Integer book_id, HttpServletRequest request) {
+        String token = request.getHeader("Authorization");
+        token = token.substring(7);
+
+        String userId = jwtUtil.getTokenClaims(token, "uid");
+        if (userId == null || userId.isEmpty()) {
+            return R.failure("无法获取用户信息");
+        }
+
+        User user = UserService.getUserByUid(userId);
+        if (user == null) {
+            return R.failure("该用户不存在");
+        }
+
+        Novel novel = novelMapper.findById(book_id);
+        if (novel == null) {
+            return R.failure("该书籍不存在");
+        }
+
+        int result = userMapper.cancelStarNovel(user.getUserId(), book_id);
+        if (result > 0) {
+            return R.ok("成功取消该书籍");
+        } else {
+            return R.failure("取消收藏失败");
+        }
+    }
+
     @GetMapping("/star")
     public R starNovel(@RequestParam("book_id") Integer book_id, HttpServletRequest request) {
         try {
@@ -171,11 +199,11 @@ public class NovelController {
     @JwtToken
     @PostMapping("/addinfo")
     public R addBookUploaded(@RequestParam("id") Integer id,
-                             @RequestParam(value = "author",required = false) String author,
-                             @RequestParam(value = "title",required = false) String title,
-                             @RequestParam(value = "description",required = false) String description,
-                             @RequestParam(value = "novelType",required = false) String novelType,
-                             @RequestParam(value = "picture",required = false) String picture) {
+                             @RequestParam(value = "author", required = false) String author,
+                             @RequestParam(value = "title", required = false) String title,
+                             @RequestParam(value = "description", required = false) String description,
+                             @RequestParam(value = "novelType", required = false) String novelType,
+                             @RequestParam(value = "picture", required = false) String picture) {
         try {
             Novel novel = novelMapper.findById(id);
             if (novel == null) {
