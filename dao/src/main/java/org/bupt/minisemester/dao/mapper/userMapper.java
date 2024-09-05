@@ -31,4 +31,7 @@ public interface userMapper {
 
     @Delete("DELETE FROM user_star_novels WHERE user_id = #{userId} AND novel_id = #{novelId}")
     int cancelStarNovel(@Param("userId") String userId, @Param("novelId") Integer novelId);
+
+    @Select("SELECT novel_id FROM user_star_novels WHERE user_id = #{userId}")
+    List<Integer> getUserStarredNovels(@Param("userId") String userId);
 }

@@ -5,6 +5,8 @@ import org.bupt.minisemester.dao.mapper.userMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
+
 @Service
 public class UserService {
 
@@ -32,5 +34,9 @@ public class UserService {
 
     public static String getUidByUsername(String username) {
         return usermapper.findUidByUsername(username);
+    }
+    public static boolean isBookStarred(String userId, int book_id) {
+        List<Integer> starredNovels = usermapper.getUserStarredNovels(userId);
+        return starredNovels !=null && starredNovels.contains(book_id);
     }
 }

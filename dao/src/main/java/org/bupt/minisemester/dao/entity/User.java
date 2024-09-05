@@ -41,4 +41,5 @@ public class User {
         }
         this.star_novels.add(novel.getId());
     }
+
 }

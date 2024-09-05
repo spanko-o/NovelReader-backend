@@ -166,6 +166,28 @@ public class NovelController {
         }
     }
 
+    @GetMapping("/status/{id}")
+    public R getStarStatus(@PathVariable("id") int book_id, HttpServletRequest request) {
+        //获取用户
+        try {
+
+            String token = request.getHeader("Authorization");
+            token = token.substring(7);
+
+            String userId = jwtUtil.getTokenClaims(token, "uid");
+            if (userId == null || userId.isEmpty()) {
+                return R.failure("无法获取用户信息");
+            }
+            boolean isStarred = UserService.isBookStarred(userId, book_id);
+            return R.ok(isStarred);
+
+        } catch (Exception e) {
+            e.printStackTrace();
+            return R.failure(e.getMessage());
+        }
+
+    }
+
     @JwtToken
     @GetMapping("")
     public R getAllNovels() {
