@@ -59,6 +59,9 @@ public class searchService {
 
         // 遍历搜索结果，将每个结果转换为Map并添加到resultList中
         for (ScoreDoc scoreDoc : docs.scoreDocs) {
+            if (scoreDoc.doc ==0) {
+                continue;
+            }
             // 通过docId获取Document对象
             Document doc = indexSearcher.doc(scoreDoc.doc);
             // 创建Map对象存储该文档的相关信息

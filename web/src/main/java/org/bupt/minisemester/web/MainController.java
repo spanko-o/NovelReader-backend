@@ -45,7 +45,7 @@ public class MainController {
     @GetMapping("/Main")
     public R NovelList(@RequestParam(value = "page", defaultValue = "1") int page) {
         try {
-            int pageSize = 4; // 每页显示4条数据
+            int pageSize =12; // 每页显示4条数据
             int maxPages = 3; // 最大页数为3页
             int offset = (page - 1) * pageSize;
 
