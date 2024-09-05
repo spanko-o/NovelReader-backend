@@ -79,8 +79,8 @@ public class NovelServiceGlobal {
 
     public List<NovelDTO> findStarredNovels(String uid) {
         List<NovelDTO> BookShelf = this.userMapper.findNovelByUid(uid);
-        List<NovelDTO> temp = this.userMapper.findUploadedNovel(uid);
-        BookShelf.addAll(temp);
+//        List<NovelDTO> temp = this.userMapper.findUploadedNovel(uid);
+//        BookShelf.addAll(temp);
         return BookShelf;
     }
 }
